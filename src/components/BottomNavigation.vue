@@ -2,9 +2,7 @@
     <v-bottom-navigation
         v-model="value"
         color="primary"
-        density="compact"
         elevation="3"
-
     >
         <v-btn value="1">
             <v-icon>mdi-history</v-icon>
@@ -12,7 +10,7 @@
         </v-btn>
 
         <v-btn value="2">
-            <v-icon>mdi-heart</v-icon>
+            <v-icon>mdi-home</v-icon>
             首页
         </v-btn>
 

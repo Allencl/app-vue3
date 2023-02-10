@@ -29,7 +29,7 @@ export default {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  /* text-align: center; */
   color: #2c3e50;
 }
 
@@ -47,5 +47,8 @@ nav a.router-link-exact-active {
 }
 .layout-container{
   padding: 72px 6px 50px 6px;
+}
+.v-row{
+  margin: 0px;
 }
 </style>
