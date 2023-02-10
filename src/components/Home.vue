@@ -4,26 +4,50 @@
         <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
+                    name="aaa"
+                    title="供应商"
                     icon="mdi-minus-circle"
                     color-icon="primary"
+                    @clickCard="btnCardHandle"
                 />
             </v-col>
             <v-col cols="6">
                 <CardBtnComponent 
+                    name="bbb"
+                    title="供应商2"
                     icon="mdi-thumb-down"
                     color-icon="red"
+                    @clickCard="btnCardHandle"
                 />
             </v-col>
         </v-row>
 
         <v-row class="home-card">
             <v-col cols="6">
-                <CardBtnComponent />
+                <CardBtnComponent 
+                    name="ccc"
+                    title="供应商3"
+                    icon="mdi-thumb-down"
+                    color-icon="red"
+                    @clickCard="btnCardHandle"
+                />
             </v-col>
             <v-col cols="6">
-                <CardBtnComponent />
+                <CardBtnComponent 
+                    name="ddd"
+                    title="供应商4"
+                    icon="mdi-thumb-down"
+                    color-icon="red"
+                    @clickCard="btnCardHandle"
+                />
             </v-col>
         </v-row>
+
+
+        <MenuComponent 
+            ref="menuRef"
+        />
+
 
     </span>
 
@@ -31,13 +55,55 @@
   
 <script>
   import CardBtnComponent from '@/components/home/CardBtn.vue'
+  import MenuComponent from '@/components/home/MenuComponent.vue'
+
+
 
 export default {
     components:{
-        CardBtnComponent
+        CardBtnComponent,
+        MenuComponent
+    },
+    methods:{
+        /**
+         * 按钮 card
+        */
+        btnCardHandle:function(name,title){
+            let items=[];
+
+            switch (name) {
+                case 'aaa':
+                    items=[
+                        { 
+                            text: '表单页面', 
+                            icon: 'mdi-clock',
+                            path: '/test/form' 
+                        },
+
+                    ]
+                    break;
+                case 'bbb':
+                    items=[
+                        { text: 'Real-Time2', icon: 'mdi-clock' },
+                        { text: 'Audience2', icon: 'mdi-account' },
+                        { text: 'Conversions2', icon: 'mdi-flag' },
+                        { text: 'Real-Time2', icon: 'mdi-clock' },
+                        { text: 'Audience2', icon: 'mdi-account' },
+                        { text: 'Conversions2', icon: 'mdi-flag' },
+                        { text: 'Real-Time2', icon: 'mdi-clock' },
+                        { text: 'Audience2', icon: 'mdi-account' },
+                        { text: 'Conversions2', icon: 'mdi-flag' },
+                    ]
+                    break;                    
+            
+                default:
+                    break;
+            }
+            this.$refs.menuRef.showDrawer(title,items);
+        }
     },
     data: () => ({ 
-
+        // drawer:true
     }),
 }
 </script>

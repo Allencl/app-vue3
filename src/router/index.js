@@ -11,7 +11,11 @@ const routes = [
     name: 'home',
     component: () => import('@/components/Home.vue')
   },
-
+  {
+    path: '/test/form',
+    name: 'testForm',
+    component: () => import('@/views/test/Form.vue')
+  },
 
 
   {

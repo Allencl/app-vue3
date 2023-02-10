@@ -11,13 +11,14 @@
             outlined 
             tile
             shaped
+            @click="btnClick"
         >
             <v-row>
                 <v-col cols="4 pr-0 pl-0 pt-0 pb-0">
-                    <v-icon size="36" :color="colorIcon" :icon="icon"></v-icon>
+                    <v-icon size="26" :color="colorIcon" :icon="icon" style="position: relative;top:4px"></v-icon>
                 </v-col>
                 <v-col cols="8 pl-0 pt-0 pb-0 pr-0">
-                    <v-card-title class="text-truncate text-right  pl-0 pt-0 pb-0 pr-0" style="position:relative;top:3px">供应商</v-card-title>
+                    <v-card-title class="text-truncate text-right  pl-0 pt-0 pb-0 pr-0">{{title}}</v-card-title>
                 </v-col>
             </v-row>
             
@@ -30,7 +31,26 @@ export default {
     data: () => ({ 
   
     }),
+    emits: ["clickCard"],
+    methods:{
+        /**
+         * 点击菜单
+         */
+        btnClick:function(){
+            this.$emit("clickCard",this.name,this.title);
+        }
+    },
     props: {
+        // title
+        title:{
+            type: String,
+            default: ()=> ""
+        },  
+        // name
+        name:{
+            type: String,
+            default: ()=> ""
+        },   
         // icon
         icon:{
             type: String,
