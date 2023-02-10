@@ -11,7 +11,7 @@
 
         <template v-slot:prepend>
             <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            <v-app-bar-title>Photos</v-app-bar-title>
+            <v-app-bar-title>{{ text }}</v-app-bar-title>
         </template>
 
         <template v-slot:append>
@@ -32,8 +32,19 @@
 <script>
 export default {
     data: () => ({ 
+        text:"",
         barBgImage: require("@/assets/app-bar-bg.jpg")
     }),
+    watch: {
+        $route: { 
+            handler(to){
+                const {meta={}}=to;
+                this.text=meta.tittle||"";
+            },
+            deep: true, 
+            immediate: true, 
+        }
+    },
 }
 </script>
   

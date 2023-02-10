@@ -4,6 +4,7 @@
         location="bottom"
         class="home-menu-drawer"
         temporary
+        @update:modelValue="updateDrawerValue"
     >
 
         <v-list>
@@ -45,12 +46,18 @@ export default {
         },
         clickItem:function(item){
             this.drawer=false;
-            
+
             if(!item.path){
                 return;
             }
             this.$router.push(item.path);
 
+        },
+        updateDrawerValue:function(active){
+            if(!active){
+                this.title="";
+                this.items=[];
+            }
         }
     },
     props: {

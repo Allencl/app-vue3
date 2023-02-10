@@ -9,11 +9,13 @@ const routes = [
   {
     path: '/home',
     name: 'home',
+    meta:{tittle:"首页"},
     component: () => import('@/components/Home.vue')
   },
   {
     path: '/test/form',
     name: 'testForm',
+    meta:{tittle:"表单测试页面"},
     component: () => import('@/views/test/Form.vue')
   },
 
@@ -21,6 +23,7 @@ const routes = [
   {
     path: '/404',
     name:'404',
+    meta:{tittle:"页面丢失了"},
     component:()=> import('@/components/404.vue')
   },
   {
