@@ -5,7 +5,7 @@
             <v-col cols="6">
                 <CardBtnComponent 
                     name="aaa"
-                    title="供应商"
+                    title="表单示例页面"
                     icon="mdi-minus-circle"
                     color-icon="primary"
                     @clickCard="btnCardHandle"
