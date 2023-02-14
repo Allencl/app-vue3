@@ -20,7 +20,7 @@
         <template v-slot:append>
 
             <v-btn class="text-none" stacked>
-                <v-badge content="6" color="error">
+                <v-badge content="12" color="error">
                     <v-icon>mdi-bell-outline</v-icon>
                 </v-badge>
             </v-btn>

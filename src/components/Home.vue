@@ -57,6 +57,8 @@
         />
 
 
+        <CenterComponent />
+
     </span>
 
 </template>
@@ -65,6 +67,7 @@
     import CarouselComponent from '@/components/home/Carousel.vue'
     import CardBtnComponent from '@/components/home/CardBtn.vue'
     import MenuComponent from '@/components/home/MenuComponent.vue'
+    import CenterComponent from '@/components/home/Center.vue'
 
 
 
@@ -72,7 +75,8 @@ export default {
     components:{
         CarouselComponent,
         CardBtnComponent,
-        MenuComponent
+        MenuComponent,
+        CenterComponent
     },
     methods:{
         /**
