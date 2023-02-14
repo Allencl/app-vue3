@@ -1,5 +1,6 @@
 <template>
     <span class="layout-home">
+        <AppBarPage />
 
         <CarouselComponent />
 
@@ -64,6 +65,7 @@
 </template>
   
 <script>
+    import AppBarPage from '@/components/AppBar.vue'
     import CarouselComponent from '@/components/home/Carousel.vue'
     import CardBtnComponent from '@/components/home/CardBtn.vue'
     import MenuComponent from '@/components/home/MenuComponent.vue'
@@ -73,6 +75,7 @@
 
 export default {
     components:{
+        AppBarPage,
         CarouselComponent,
         CardBtnComponent,
         MenuComponent,

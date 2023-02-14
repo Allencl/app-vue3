@@ -28,13 +28,16 @@
             <v-btn icon="mdi-dots-vertical"></v-btn>
         </template>
 
+        <template v-if="$slots.appTabs" v-slot:extension>
+            <slot name="appTabs"></slot>
+        </template>
 
         <!-- <template v-slot:extension>
             <v-tabs align-with-title>
             <v-tab>Tab 1</v-tab>
             <v-tab>Tab 2</v-tab>
             <v-tab>Tab 3</v-tab>
-            </v-tabs>
+            </v-tabs> 
         </template> -->
     </v-app-bar>
 </template>
@@ -54,6 +57,9 @@ export default {
             deep: true, 
             immediate: true, 
         }
+    },
+    created(){
+        // console.log(this.$slots.appTabs)
     },
     methods:{
         backBarIcon(){
