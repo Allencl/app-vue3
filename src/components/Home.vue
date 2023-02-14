@@ -79,6 +79,12 @@ export default {
                             icon: 'mdi-clock',
                             path: '/test/form' 
                         },
+                        { 
+                            text: '日期页面', 
+                            icon: 'mdi-clock',
+                            path: '/test/date' 
+                        },
+                        
 
                     ]
                     break;

@@ -6,6 +6,7 @@
             v-model="formValue.name"
             :counter="50"
             variant="solo"
+            density="compact"     
             clearable
             :rules="[
                 v => !!v || '用户名必填！',
@@ -21,13 +22,35 @@
             </template>
         </v-text-field>
   
+        <v-text-field
+            v-model="formValue.number"
+            variant="solo"
+            density="compact"     
+            clearable
+            :rules="[
+                v => !!v || '数字必填！',
+                v => (Number(v)>=0) || '数字必须大于等于0！',
+            ]"
+            type="number"
+            required
+            @blur="numberBlur"
+        >
+            <template v-slot:label>
+                <span>
+                    <v-icon icon="mdi-asterisk" color="#B71C1C" size="x-small"></v-icon>
+                    <span class="pl-1">数字</span>
+                </span>
+            </template>
+        </v-text-field>
+
         <v-select
             v-model="formValue.select"
             :items="items"
             item-title="title"
             item-value="value"
             :rules="[v => !!v || '城市必选！']"
-            variant="solo"      
+            variant="solo" 
+            density="compact"     
             clearable
             required
         >
@@ -44,8 +67,9 @@
             :items="items"
             item-title="title"
             item-value="value"
-            :rules="[v => !!v || '城市必选！']"
+            :rules="[v => !!v.length || '城市必选！']"
             variant="solo"
+            density="compact"     
             chips
             multiple
             clearable
@@ -64,6 +88,7 @@
             :counter="500"
             rows="3"
             variant="solo"
+            density="compact"     
             clearable
             :rules="[
                 v => !!v || '描述必填！',
@@ -81,8 +106,9 @@
   
         <v-checkbox
           v-model="checkbox"
-          :rules="[v => !!v || 'You must agree to continue!']"
-          label="Do you agree?"
+          :rules="[v => !!v || '同意吗？!']"
+          label="同意？"
+          color="primary"
           required
         ></v-checkbox>
   
@@ -124,6 +150,7 @@
         // 表单数据
         formValue:{
             name: '',         // 单行文本
+            number:0,         // 数字
             select: '2',     // 下拉框 单选   null 
             selectMultiple:['1','5'],   // 下拉框 多选
             description:"",   // 多行文本
@@ -140,11 +167,21 @@
             {title:'巴西',value:'4'},
             {title:'古巴',value:'5'},
             {title:'亚斯南大',value:'6'},
+            {title:'汉堡',value:'7'},
+            {title:'底特律',value:'8'},
+            {title:'刚果',value:'9'},
+            {title:'新加坡',value:'10'},
+            {title:'曼德拉西',value:'11'},
         ],
         checkbox: false,
     }),
 
     methods: {
+
+        numberBlur(){
+            this.formValue.number=String(Number(this.formValue.number));
+        },
+
       async validate () {
         const { valid } = await this.$refs.form.validate()
 

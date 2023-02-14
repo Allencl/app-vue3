@@ -18,6 +18,13 @@ const routes = [
     meta:{tittle:"表单测试页面"},
     component: () => import('@/views/test/Form.vue')
   },
+  {
+    path: '/test/date',
+    name: 'testDate',
+    meta:{tittle:"日期测试页面"},
+    component: () => import('@/views/test/Date.vue')
+  },
+
 
 
   {
