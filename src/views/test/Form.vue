@@ -105,10 +105,11 @@
         </v-textarea>
   
         <v-checkbox
-          v-model="checkbox"
+          v-model="formValue.checkbox"
           :rules="[v => !!v || '同意吗？!']"
           label="同意？"
           color="primary"
+          density="compact"     
           required
         ></v-checkbox>
   
@@ -154,10 +155,8 @@
             select: '2',     // 下拉框 单选   null 
             selectMultiple:['1','5'],   // 下拉框 多选
             description:"",   // 多行文本
+            checkbox: false,
         },
-
-
-
 
 
         items: [
@@ -173,7 +172,7 @@
             {title:'新加坡',value:'10'},
             {title:'曼德拉西',value:'11'},
         ],
-        checkbox: false,
+
     }),
 
     methods: {
