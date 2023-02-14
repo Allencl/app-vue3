@@ -84,6 +84,14 @@ export default {
                             icon: 'mdi-clock',
                             path: '/test/date' 
                         },
+                        { 
+                            text: '消息页面', 
+                            icon: 'mdi-clock',
+                            path: '/test/snackbar'
+                        },
+
+
+                        
                         
 
                     ]

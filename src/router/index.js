@@ -24,6 +24,12 @@ const routes = [
     meta:{tittle:"日期测试页面"},
     component: () => import('@/views/test/Date.vue')
   },
+  {
+    path: '/test/snackbar',
+    name: 'snackBar',
+    meta:{tittle:"消息测试页面"},
+    component: () => import('@/views/test/Snackbar.vue')
+  },
 
 
 
