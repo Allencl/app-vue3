@@ -5,8 +5,8 @@
         elevation="3"
     >
         <v-btn value="/aaa" @click="pathPush('/aaa')">
-            <v-icon>mdi-history</v-icon>
-            Recent
+            <v-icon>mdi-arrow-u-left-bottom</v-icon>
+            返回
         </v-btn>
 
         <v-btn value="/home" @click="pathPush('/home')">

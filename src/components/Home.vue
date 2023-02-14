@@ -1,6 +1,8 @@
 <template>
     <span class="layout-home">
 
+        <CarouselComponent />
+
         <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
@@ -44,6 +46,12 @@
         </v-row>
 
 
+        <!-- <v-row>
+            <v-col cols="4"><v-divider style="position:relative;top:18px"></v-divider></v-col>  
+            <v-col cols="4" class="text-center"><v-card-title style="font-size:14px;">到底了</v-card-title></v-col>     
+            <v-col cols="4"><v-divider style="position:relative;top:18px"></v-divider></v-col>     
+        </v-row> -->
+
         <MenuComponent 
             ref="menuRef"
         />
@@ -54,13 +62,15 @@
 </template>
   
 <script>
-  import CardBtnComponent from '@/components/home/CardBtn.vue'
-  import MenuComponent from '@/components/home/MenuComponent.vue'
+    import CarouselComponent from '@/components/home/Carousel.vue'
+    import CardBtnComponent from '@/components/home/CardBtn.vue'
+    import MenuComponent from '@/components/home/MenuComponent.vue'
 
 
 
 export default {
     components:{
+        CarouselComponent,
         CardBtnComponent,
         MenuComponent
     },

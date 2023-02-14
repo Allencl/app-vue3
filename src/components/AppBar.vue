@@ -1,6 +1,8 @@
 <template>
     <v-app-bar
         color="primary"
+        dense
+        elevation="4"
         :image="barBgImage"
     >
         <template v-slot:image>
@@ -10,11 +12,19 @@
         </template>
 
         <template v-slot:prepend>
-            <v-app-bar-nav-icon></v-app-bar-nav-icon>
-            <v-app-bar-title>{{ text }}</v-app-bar-title>
+            <!-- <v-app-bar-nav-icon></v-app-bar-nav-icon> -->
+            <v-btn icon="mdi-chevron-left" @click="backBarIcon"></v-btn>
+            <v-app-bar-title style="font-size:16px;">{{ text }}</v-app-bar-title>
         </template>
 
         <template v-slot:append>
+
+            <v-btn class="text-none" stacked>
+                <v-badge content="6" color="error">
+                    <v-icon>mdi-bell-outline</v-icon>
+                </v-badge>
+            </v-btn>
+
             <v-btn icon="mdi-dots-vertical"></v-btn>
         </template>
 
@@ -45,6 +55,14 @@ export default {
             immediate: true, 
         }
     },
+    methods:{
+        backBarIcon(){
+            const {path}= this.$route
+
+            if(path=="/home") return
+            this.$router.go(-1)
+        }
+    }
 }
 </script>
   
