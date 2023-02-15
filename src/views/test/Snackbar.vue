@@ -32,8 +32,10 @@
 
     methods: {
         aaa(){
-            console.log( this )
-            console.log("8987")
+            // console.log( this.$store )
+            // console.log("8987")
+
+
         }
     },
   }

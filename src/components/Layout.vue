@@ -7,6 +7,11 @@
             <router-view/>
         </div>
 
+        <CenterComponent 
+            ref="center"
+            v-if="showBottomNavigation"
+        />
+
             <!-- <v-sheet
             class="p-12"
         >
@@ -26,22 +31,49 @@
             <router-link to="/">Home</router-link> |
             <router-link to="/about">About</router-link>
             </nav> -->
-        <BottomNavigationPage />
+        <BottomNavigationPage v-if="showBottomNavigation" />
     </span>
   </template>
-  <script>
-  
-  import AppBarPage from '@/components/AppBar.vue'
-  import BottomNavigationPage from '@/components/BottomNavigation.vue'
+<script>
+    import CenterComponent from '@/components/home/Center.vue'
+    import AppBarPage from '@/components/AppBar.vue'
+    import BottomNavigationPage from '@/components/BottomNavigation.vue'
   
   export default {
     components:{
       AppBarPage,
-      BottomNavigationPage
+      BottomNavigationPage,
+      CenterComponent
     },
     data:()=>({ 
-  
+        showBottomNavigation:false
     }),
+    watch: {
+        '$store.state.actionsStore.showUserCenter': { 
+            handler(value){
+                if(value) {
+                    this.$nextTick(()=>{
+                        this.$refs.center.open()
+                    })
+                }
+            },
+            deep: true, 
+            immediate: true, 
+        },
+        $route: { 
+            handler(to){
+                const {path}=to;
+
+                if( ['/','/login'].includes(path) ){
+                    this.showBottomNavigation=false
+                }else{
+                    this.showBottomNavigation=true
+                }
+            },
+            deep: true, 
+            immediate: true, 
+        }
+    },
     created(){
   
     },

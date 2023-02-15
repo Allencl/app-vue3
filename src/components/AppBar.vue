@@ -25,7 +25,7 @@
                 </v-badge>
             </v-btn>
 
-            <v-btn icon="mdi-dots-vertical"></v-btn>
+            <v-btn icon="mdi-dots-vertical" @click="showUserCenterHandle"></v-btn>
         </template>
 
         <template v-if="$slots.appTabs" v-slot:extension>
@@ -39,11 +39,19 @@
             <v-tab>Tab 3</v-tab>
             </v-tabs> 
         </template> -->
+
+
+
+
     </v-app-bar>
 </template>
   
 <script>
+
 export default {
+    components:{
+        
+    },
     data: () => ({ 
         text:"",
         barBgImage: require("@/assets/app-bar-bg.jpg")
@@ -59,7 +67,7 @@ export default {
         }
     },
     created(){
-        // console.log(this.$slots.appTabs)
+
     },
     methods:{
         backBarIcon(){
@@ -67,6 +75,13 @@ export default {
 
             if(path=="/home") return
             this.$router.go(-1)
+        },
+        showUserCenterHandle(){
+            this.$store.dispatch("changeUserCenter",false) 
+            this.$nextTick(()=>{
+                this.$store.dispatch("changeUserCenter",true) 
+            })
+
         }
     }
 }

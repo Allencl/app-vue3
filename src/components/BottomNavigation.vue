@@ -3,7 +3,7 @@
         v-model="value"
         color="primary"
         elevation="3"
-       
+
     >
         <!-- <v-btn value="/aaa" @click="pathPush('/aaa')">
             <v-icon>mdi-arrow-u-left-bottom</v-icon>
@@ -41,6 +41,9 @@ export default {
         pathPush:function(path){
             this.$router.push(path);
         }
+    },
+    props: {
+
     }
 }
 </script>

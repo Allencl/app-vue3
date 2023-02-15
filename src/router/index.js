@@ -13,6 +13,12 @@ const routes = [
     component: () => import('@/components/Home.vue')
   },
   {
+    path: '/login',
+    name: 'login',
+    meta:{tittle:"登录"},
+    component: () => import('@/components/Login.vue')
+  },
+  {
     path: '/test/form',
     name: 'testForm',
     meta:{tittle:"表单测试页面"},
