@@ -8,29 +8,10 @@
         </div>
 
         <CenterComponent 
-            ref="center"
             v-if="showBottomNavigation"
         />
 
-            <!-- <v-sheet
-            class="p-12"
-        >
-            <router-view/>
-        </v-sheet> -->
 
-            <!-- <v-sheet
-            class="overflow-y-auto"
-            >
-            <v-container>
-                <v-row justify="space-around">
-                <router-view/>
-                </v-row>
-            </v-container>
-            </v-sheet> -->
-            <!-- <nav>
-            <router-link to="/">Home</router-link> |
-            <router-link to="/about">About</router-link>
-            </nav> -->
         <BottomNavigationPage v-if="showBottomNavigation" />
     </span>
   </template>
@@ -49,17 +30,6 @@
         showBottomNavigation:false
     }),
     watch: {
-        '$store.state.actionsStore.showUserCenter': { 
-            handler(value){
-                if(value) {
-                    this.$nextTick(()=>{
-                        this.$refs.center.open()
-                    })
-                }
-            },
-            deep: true, 
-            immediate: true, 
-        },
         $route: { 
             handler(to){
                 const {path}=to;

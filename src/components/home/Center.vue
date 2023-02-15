@@ -64,9 +64,23 @@ export default {
             }
         ]
     }),
+    watch: {
+        'drawer': { 
+            handler(value){
+                this.$store.dispatch("changeUserCenter", value ) 
+            },
+        },
+        '$store.state.actionsStore.showUserCenter': { 
+            handler(value){
+                this.drawer=value
+            },
+            deep: true, 
+            immediate: true, 
+        },
+    },
     methods:{
         open(){
-            this.drawer=true
+            // this.drawer=true
         },
         itemHandle(option){
             const {value}=option

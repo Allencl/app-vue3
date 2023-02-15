@@ -107,7 +107,7 @@ export default {
                             path: '/test/snackbar'
                         },
                         { 
-                            text: 'bi', 
+                            text: 'BI', 
                             icon: 'mdi-clock',
                             path: '/test/bi'
                         },

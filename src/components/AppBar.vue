@@ -77,11 +77,7 @@ export default {
             this.$router.go(-1)
         },
         showUserCenterHandle(){
-            this.$store.dispatch("changeUserCenter",false) 
-            this.$nextTick(()=>{
-                this.$store.dispatch("changeUserCenter",true) 
-            })
-
+            this.$store.dispatch("changeUserCenter", !this.$store.state.actionsStore.showUserCenter ) 
         }
     }
 }
