@@ -58,7 +58,7 @@ export default {
 
         itemList:[
             {
-                icon:"mdi-forum",
+                icon:"mdi-send-outline",
                 title:"退出登录", 
                 value:"out"
             }

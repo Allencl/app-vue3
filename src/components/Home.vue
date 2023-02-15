@@ -106,6 +106,11 @@ export default {
                             icon: 'mdi-clock',
                             path: '/test/snackbar'
                         },
+                        { 
+                            text: 'bi', 
+                            icon: 'mdi-clock',
+                            path: '/test/bi'
+                        },
 
 
                         

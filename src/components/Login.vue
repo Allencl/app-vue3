@@ -19,7 +19,7 @@
         <v-text-field
             v-model="formValue.name"
           placeholder="请输入用户名"
-          prepend-inner-icon="mdi-email-outline"
+          prepend-inner-icon="mdi-account"
           variant="solo"
           :rules="[
                 v => !!v || '用户名必填！',

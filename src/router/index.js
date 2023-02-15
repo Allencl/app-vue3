@@ -36,6 +36,12 @@ const routes = [
     meta:{tittle:"消息测试页面"},
     component: () => import('@/views/test/Snackbar.vue')
   },
+  {
+    path: '/test/bi',
+    name: 'bi',
+    meta:{tittle:"BI-测试页面"},
+    component: () => import('@/views/test/BI.vue')
+  },
 
 
 
