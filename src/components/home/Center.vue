@@ -93,6 +93,9 @@ export default {
                 default:
                     break;
             }
+
+            this.$store.dispatch("changeUserCenter", false ) 
+
         }
     },
     props: {
