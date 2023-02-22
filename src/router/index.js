@@ -19,6 +19,20 @@ const routes = [
     component: () => import('@/components/Login.vue')
   },
   {
+    path: '/equipment',
+    name: 'equipment',
+    meta:{tittle:"设备报修"},
+    component: () => import('@/views/equipmentRepairs/index.vue')
+  },
+  {
+    path: '/equipment/repairs',
+    name: 'equipmentRepairs',
+    meta:{tittle:"设备报修-详情"},
+    component: () => import('@/views/equipmentRepairs/repairs.vue')
+  },
+
+
+  {
     path: '/test/form',
     name: 'testForm',
     meta:{tittle:"表单测试页面"},

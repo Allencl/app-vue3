@@ -18,6 +18,9 @@ import vant from 'vant';
 import 'vant/lib/index.css';
 
 
+// style
+import '@/style/index.scss'
+
 // theme
 const myCustomLightTheme = {
   dark: false,

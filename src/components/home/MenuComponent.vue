@@ -8,7 +8,15 @@
     >
 
         <v-list>
-            <v-list-subheader>{{ title }}</v-list-subheader>
+            <v-list-subheader>{{ title }} 
+                <v-chip
+                    class="ma-2"
+                    color="primary"
+                    size="small"
+                >
+                   {{ items.length }}
+                </v-chip>
+            </v-list-subheader>
             <v-list-item
                 v-for="(item, i) in items"
                 :key="i"
@@ -18,10 +26,11 @@
                 @click="clickItem(item)"
             >
                 <template v-slot:prepend>
-                    <v-icon :icon="item.icon"></v-icon>
+                    <v-icon :color="item.color" :icon="item.icon"></v-icon>
                 </template>
 
                 <v-list-item-title v-text="item.text"></v-list-item-title>
+        
             </v-list-item>
         </v-list>
     </v-navigation-drawer>

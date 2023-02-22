@@ -7,6 +7,28 @@
         <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
+                    name="maintain"
+                    title="设备维修"
+                    icon="mdi-tools"
+                    color-icon="#3F51B5"
+                    @clickCard="btnCardHandle"
+                />
+            </v-col>
+            <v-col cols="6">
+                <CardBtnComponent 
+                    name="ddd"
+                    title="供应商4"
+                    icon="mdi-thumb-down"
+                    color-icon="red"
+                    @clickCard="btnCardHandle"
+                />
+            </v-col>
+        </v-row>
+
+
+        <v-row class="home-card">
+            <v-col cols="6">
+                <CardBtnComponent 
                     name="aaa"
                     title="表单示例页面"
                     icon="mdi-minus-circle"
@@ -25,26 +47,7 @@
             </v-col>
         </v-row>
 
-        <v-row class="home-card">
-            <v-col cols="6">
-                <CardBtnComponent 
-                    name="ccc"
-                    title="供应商3"
-                    icon="mdi-thumb-down"
-                    color-icon="red"
-                    @clickCard="btnCardHandle"
-                />
-            </v-col>
-            <v-col cols="6">
-                <CardBtnComponent 
-                    name="ddd"
-                    title="供应商4"
-                    icon="mdi-thumb-down"
-                    color-icon="red"
-                    @clickCard="btnCardHandle"
-                />
-            </v-col>
-        </v-row>
+
 
 
         <!-- <v-row>
@@ -89,6 +92,58 @@ export default {
             let items=[];
 
             switch (name) {
+                case 'maintain':
+                items=[
+                        { 
+                            text: '设备报修', 
+                            icon: 'mdi-bullhorn',
+                            color: "#3F51B5",
+                            path: '/equipment' 
+                        },
+                        { 
+                            text: '设备维修', 
+                            icon: 'mdi-hammer-wrench',
+                            color: "#1DE9B6",
+                            path: '/test/date' 
+                        },
+                        { 
+                            text: '维修确认', 
+                            icon: 'mdi-check-bold',
+                            color: "#18FFFF",
+                            path: '/test/snackbar'
+                        },
+                        { 
+                            text: '维修派工', 
+                            icon: 'mdi-account-hard-hat',
+                            color: "#689F38",
+                            path: '/test/bi'
+                        },
+                        { 
+                            text: '维修信息查询', 
+                            icon: 'mdi-message-processing',
+                            color: "#00BCD4",
+                            path: '/test/bi'
+                        },
+                        { 
+                            text: '维修信息统计', 
+                            icon: 'mdi-calendar-text',
+                            color: "#D4E157",
+                            path: '/test/bi'
+                        },
+                        { 
+                            text: '维修工时统计', 
+                            icon: 'mdi-calendar-clock',
+                            color: "#3F51B5",
+                            path: '/test/bi'
+                        },
+                        { 
+                            text: '评价维修', 
+                            icon: 'mdi-text-box-edit',
+                            color: "#1DE9B6",
+                            path: '/test/bi'
+                        }
+                    ]
+                    break;             
                 case 'aaa':
                     items=[
                         { 
