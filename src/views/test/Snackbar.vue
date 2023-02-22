@@ -17,10 +17,18 @@
         <v-btn elevation="2">按钮444</v-btn>
         <v-btn elevation="2">按钮555</v-btn>
 
+
+        <van-button type="primary" @click="ccc">主要按钮</van-button>
+        <van-button type="success">成功按钮</van-button>
+        <van-button type="default">默认按钮</van-button>
+        <van-button type="warning">警告按钮</van-button>
+        <van-button type="danger">危险按钮</van-button>
+
     </span>
 </template>
 <script>
     import AppBarPage from '@/components/AppBar.vue'
+    import { showSuccessToast,showFailToast } from 'vant';
 
   export default {
     components:{
@@ -36,6 +44,12 @@
             // console.log("8987")
 
 
+        },
+        ccc(){
+            console.log(this)
+
+            showSuccessToast('成功文案');
+            // showFailToast('失败文案');
         }
     },
   }

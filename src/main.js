@@ -13,6 +13,11 @@ import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 
 
+// vant
+import vant from 'vant';
+import 'vant/lib/index.css';
+
+
 // theme
 const myCustomLightTheme = {
   dark: false,
@@ -40,5 +45,6 @@ createApp(App)
 .use(store)
 .use(router)
 .use(vuetify)
+.use(vant)
 .use(VueApexCharts)
 .mount('#app')
