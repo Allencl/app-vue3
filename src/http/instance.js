@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+import router from '@/router/index'
+import { showSuccessToast,showFailToast } from 'vant'
 
 
 //让ajax携带cookie
@@ -27,7 +29,7 @@ instance.interceptors.request.use(
         // })
 
 
-        
+        // console.log(111)
         // store.dispatch("changeSpinning",true) // 全局lodding
 
         return config;
@@ -43,13 +45,13 @@ instance.interceptors.response.use(
         const {config,data,status}=response;
         // store.dispatch("changeSpinning",false) // 全局lodding
 
-
+        // console.log(response)  
         // 登录超时
-        // if(status==401){
-        //     message.error("登录已超时，请重新登录！");
-        //     router.push('/login')
-        //     return undefined
-        // }
+        if(status==401){
+            showFailToast("登录已超时，请重新登录！")
+            // router.push('/login')
+            return undefined
+        }
 
         // 请求成功
         if (response.status == 200) {
@@ -64,6 +66,14 @@ instance.interceptors.response.use(
         }
     },
     (error)=>{
+        const {status}=error.response
+        
+        // 登录过期
+        if(status==401){
+            showFailToast("登录已超时，请重新登录！")
+            router.push('/login')
+        }
+        // console.log(error.response)
         // const {statusText,status,data={}}=error.response;
         // message.error(`服务器错误：[${status}] ${statusText} ${data.message}`);
         // store.dispatch("changeSpinning",false) // 全局lodding

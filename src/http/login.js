@@ -7,6 +7,7 @@ export const codeHTTP= async(params)=>{
     return await httpHandle({
         url:"/stage-api/code",
         method:'get',
+        noToken:true
     })
 }
 
@@ -16,6 +17,7 @@ export const loginHTTP= async(params)=>{
     return await httpHandle({
         url:"/stage-api/auth/login",
         method:'post',
-        payload:params.payload
+        payload:params.payload,
+        noToken:true
     })
 }

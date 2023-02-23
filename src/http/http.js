@@ -8,8 +8,15 @@ import { showSuccessToast,showFailToast } from 'vant'
 // post 请求
 export const httpHandle = async(option={})=>{
     const {access_token}=store.state.actionsStore.bufferLoginMessage
+    // console.log(access_token)
 
     try {
+
+        if(!access_token && !option["noToken"]){
+            showFailToast("Token失效！")
+            return new Promise((resolve, reject) => {})
+        }
+
 
         return new Promise((resolve, reject) => {
             instance({
@@ -25,7 +32,11 @@ export const httpHandle = async(option={})=>{
             .then((res)=>{
                 // console.log(res)
 
-                if(res.code==500){
+                if(!res){
+                    return
+                }
+
+                if(res?.code==500){
                     // reject(res)
                     showFailToast(`${res.code} ${res.msg}`);
                     return

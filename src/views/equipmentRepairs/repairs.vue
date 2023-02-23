@@ -48,15 +48,27 @@
                 :option="maintainTypeSelectOption"
             />
 
-            <van-field 
+            <!-- <van-field 
                 v-model="formData.user"
                 label="报修人" 
                 placeholder="请输入" 
+            /> -->
+            <SelectComponents 
+                v-model:value="formData.user"
+                label="报修人"
+                required
+                :option="repairmanSelectOption"
             />
+            
 
-            <DatePickerComponents 
+            <!-- <DatePickerComponents 
                 v-model:value="formData.date"
                 label="报修时间" 
+            /> -->
+            <van-field 
+                v-model="formData.date"
+                label="报修时间" 
+                readonly
             />
         </v-sheet>
 
@@ -73,9 +85,11 @@
     import SelectComponents from '@/packages/Select.vue'
     import DatePickerComponents from '@/packages/DatePicker.vue'
 
+    import {FaultTypeHTTP,FaultPositionHTTP,MaintainTypeHTTP,RepairmanHTTP,SubmitHTTP} from '@/http/equipment/repairs'   // api
 
 
     import { showSuccessToast,showFailToast } from 'vant'
+    import { OBJECTMEMBER_TYPES } from '@babel/types'
 
   export default {
     components:{
@@ -98,35 +112,87 @@
 
         // 故障类型 数据
         typeOption:[
-            { text: '动力系统故障', value: '1' },
-            { text: '电气系统故障', value: '2' },
-            { text: '工具道具故障', value: '3' },
-            { text: '网路故障', value: '4' },
+            // { text: '动力系统故障', value: '1' },
+            // { text: '电气系统故障', value: '2' },
+            // { text: '工具道具故障', value: '3' },
+            // { text: '网路故障', value: '4' },
         ],
 
         // 故障位置 数据
         locationOption:[
-            { text: '动力系统', value: '1' },
-            { text: '电气系统', value: '2' },
-            { text: '工具道具', value: '3' },
-            { text: '网路', value: '4' },
+            // { text: '动力系统', value: '1' },
+            // { text: '电气系统', value: '2' },
+            // { text: '工具道具', value: '3' },
+            // { text: '网路', value: '4' },
         ],
 
 
 
         // 维修类型 数据
         maintainTypeSelectOption:[
-            { text: '动力系统7', value: '1' },
-            { text: '电气系统7', value: '2' },
-            { text: '工具道具7', value: '3' },
-            { text: '网路7', value: '4' },
-        ]
+            // { text: '动力系统7', value: '1' },
+            // { text: '电气系统7', value: '2' },
+            // { text: '工具道具7', value: '3' },
+            // { text: '网路7', value: '4' },
+        ],
+
+        // 报修人 数据
+        repairmanSelectOption:[
+
+        ],
+        
     }),
+    created(){
+        this.initType()
+        this.initPosition()
+        this.initMaintainType()
+        this.initRepairman()
+        
+        this.initTime()
+    },
     methods: {
+        // 时间初始化
+        initTime(){
+            this.formData.date="2023-2-23 15:33"
+        },
+        // 故障类型 下拉数据
+        async initType(){
+            const {rows=[]}=await FaultTypeHTTP()
+            this.typeOption=rows.map(o=> Object.assign({text:`${o.faultTypeNo}-${o.faultTypeName}`,value:o.tmBasFaultTypeId}))
+        },
+        // 故障位置
+        async initPosition(){
+            const {rows=[]}=await FaultPositionHTTP()
+            this.locationOption=rows.map(o=> Object.assign({text:`${o.faultNo}-${o.faultName}`,value:o.tmBasFaultId}))
+        },
+        // 维修类型
+        async initMaintainType(){
+            const {data=[]}=await MaintainTypeHTTP()
+            this.maintainTypeSelectOption=data.map(o=> Object.assign({text:`${o.dictLabel}`,value:o.dictValue}))
+        },
+        // 报修人
+        async initRepairman(){
+            const {rows=[]}=await RepairmanHTTP()
+            this.repairmanSelectOption=rows.map(o=> Object.assign({text:`${o.userName}-${o.nickName}`,value:o.userId}))
+        },
+        
         // 提交
-        submit(){
-            const {}=this.formData;
-            console.log(this.formData)
+        async submit(){
+            const {typeSelectValue,locationSelectValue,description,maintainTypeSelectValue,user}=this.formData
+            const {tmBasEquipmentId}=this.$route.query
+
+            const {}=await SubmitHTTP({
+                payload:{
+                    tmBasFaultTypeId: typeSelectValue, //  故障类型 o.tmBasFaultTypeId
+                    tmBasFaultId: locationSelectValue, //  故障位置  o.tmBasFaultId
+                    problemCause: description,  //  详细描述
+
+                    reportType: maintainTypeSelectValue,  // 报修类型  o.dictValue
+                    reportBy: user, //   报修人   o.userName
+
+                    tmBasEquipmentId: tmBasEquipmentId, //  设备  o.tmBasEquipmentId
+                }
+            })
         }
     },
   }
