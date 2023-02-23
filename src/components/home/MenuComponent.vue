@@ -57,9 +57,9 @@ export default {
             this.drawer=false;
 
             if(!item.path){
-                return;
+                return
             }
-            this.$router.push(item.path);
+            this.$router.push(item.path)
 
         },
         updateDrawerValue:function(active){

@@ -9,7 +9,7 @@ module.exports = defineConfig({
     proxy: {
       '': {
         // 此处的写法，目的是为了 将 /api 替换成 https://www.baidu.com/d
-        target: 'http://10.10.10.21:10001/',
+        target: 'http://192.168.0.113:8188/',
         // target:process.env.VUE_APP_SERVER_API_BASE,
         // 允许跨域
         changeOrigin: true,

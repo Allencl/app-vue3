@@ -75,7 +75,7 @@
 
 
 
-    import { showSuccessToast,showFailToast } from 'vant';
+    import { showSuccessToast,showFailToast } from 'vant'
 
   export default {
     components:{
