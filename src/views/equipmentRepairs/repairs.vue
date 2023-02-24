@@ -65,11 +65,11 @@
                 v-model:value="formData.date"
                 label="报修时间" 
             /> -->
-            <van-field 
+            <!-- <van-field 
                 v-model="formData.date"
                 label="报修时间" 
                 readonly
-            />
+            /> -->
         </v-sheet>
 
         <div class="mt-3 mb-4 ">
