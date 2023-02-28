@@ -85,6 +85,7 @@
               height="35"
               width="82"
               :src="data64Image"
+              @click="getCode"
             ></v-img>
             <v-btn 
               color="primary"
