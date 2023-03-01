@@ -1,6 +1,8 @@
 import axios from 'axios'
 
 import router from '@/router/index'
+import store from '@/store/index'
+
 import { showSuccessToast,showFailToast } from 'vant'
 
 
@@ -30,7 +32,7 @@ instance.interceptors.request.use(
 
 
         // console.log(111)
-        // store.dispatch("changeSpinning",true) // 全局lodding
+        store.dispatch("changeGlobalLodding",true) // 全局lodding
 
         return config;
     },
@@ -43,7 +45,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     (response)=>{
         const {config,data,status}=response;
-        // store.dispatch("changeSpinning",false) // 全局lodding
+        store.dispatch("changeGlobalLodding",false) // 全局lodding
 
         // console.log(response)  
         // 登录超时
@@ -77,6 +79,8 @@ instance.interceptors.response.use(
         // const {statusText,status,data={}}=error.response;
         // message.error(`服务器错误：[${status}] ${statusText} ${data.message}`);
         // store.dispatch("changeSpinning",false) // 全局lodding
+
+        store.dispatch("changeGlobalLodding",false) // 全局lodding
     }
 )
 

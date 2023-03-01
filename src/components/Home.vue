@@ -104,7 +104,7 @@ export default {
                             text: '设备维修', 
                             icon: 'mdi-hammer-wrench',
                             color: "#1DE9B6",
-                            path: '/test/date' 
+                            path: '/equipment/maintain' 
                         },
                         { 
                             text: '维修确认', 

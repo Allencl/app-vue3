@@ -17,11 +17,22 @@ export const httpHandle = async(option={})=>{
             return new Promise((resolve, reject) => {})
         }
 
+        // 格式化 url
+        const _bufferParmasURL=Object.entries((option["url_params"]||{}));
+        let _parmasURL="";  
+        let _paramsRESTful=option["url_RESTful"]||"";
+
+        // 格式化 url
+        if(_bufferParmasURL.length){
+            _bufferParmasURL.map(o=>{ _parmasURL+=`${o[0]}=${o[1]}&` });
+            _parmasURL=`?${_parmasURL.slice(0,_parmasURL.length-1)}`
+        }
+
 
         return new Promise((resolve, reject) => {
             instance({
                 method: option["method"],
-                url: option["url"] || "",
+                url:option["url"]+_paramsRESTful+_parmasURL,
                 data:JSON.stringify( (option["payload"]||{}) ), 
                 headers: {
                     'Content-Type': 'application/json',

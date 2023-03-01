@@ -19,7 +19,9 @@ import 'vant/lib/index.css';
 
 
 // style
-import '@/style/index.scss'
+import '@/styles/index.scss'
+import '@/styles/variables.scss'
+
 
 // theme
 const myCustomLightTheme = {

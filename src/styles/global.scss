@@ -1,0 +1,44 @@
+.card-title-index1{
+    padding-left: 8px;
+    padding-top: 8px;
+    // display: inline;
+    // margin-top: 10px;
+    
+    >span{
+        padding-left: 6px;
+        font-size: 15px;
+        position: relative;
+        top: 2px;
+    }
+}
+
+
+// table css 
+.v-window-item-table{ 
+    padding: 4px;
+
+    .v-card{
+        margin-bottom: 12px;
+        padding: 8px 0px 8px 0px !important;
+
+        .v-row.text{
+            padding-left: 12px;
+            padding-right: 12px;
+        }
+
+        .v-row.table-title{
+            padding-left: 8px;
+            padding-right: 8px;
+
+            .v-icon{
+                margin-right: 4px;
+            }
+        }
+    }
+
+    .table-title{
+        margin-bottom: 4px;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #e0e0e0;
+    }
+ }

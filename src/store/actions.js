@@ -1,6 +1,7 @@
 
 export default {
     state: {
+        showLodding:false,  // 显示 lodding
         bufferLoginMessage:{},   // 缓存登录信息
         showUserCenter:false,   // show right drawer
     },
@@ -15,6 +16,10 @@ export default {
         bufferLoginMessageStore:function(state,option){
             state.bufferLoginMessage=option;
 		},
+        // 切换 lodding  
+        changeGlobalLodding:function(state,active){
+            state.showLodding=active;
+        },
     },
     actions: {
         changeUserCenter:function(context,active) {
@@ -22,6 +27,9 @@ export default {
         },
         bufferLoginMessageStore:function(context,option) {
             context.commit('bufferLoginMessageStore',option)
+        },
+        changeGlobalLodding:function(context,active) {
+            context.commit('changeGlobalLodding',active)
         },
     }
 }

@@ -1,6 +1,19 @@
 <template>
   <v-app>
     <LayoutPage />
+
+    <v-overlay
+      :model-value="overlay"
+      class="align-center justify-center"
+      persistent
+    >
+      <v-progress-circular
+        color="primary"
+        indeterminate
+        size="32"
+      ></v-progress-circular>
+    </v-overlay>
+
   </v-app>
 </template>
 <script>
@@ -12,8 +25,17 @@ export default {
     LayoutPage
   },
   data:()=>({ 
-
+    overlay: false,
   }),
+  watch: {
+    '$store.state.actionsStore.showLodding': { 
+        handler(value){
+          this.overlay=value
+        },
+        deep: true, 
+        immediate: true, 
+    },
+    },
   created(){
 
   },
