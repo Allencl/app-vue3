@@ -49,7 +49,7 @@ export const httpHandle = async(option={})=>{
 
                 if(res?.code==500){
                     // reject(res)
-                    showFailToast(`${res.code} ${res.msg}`);
+                    showFailToast(`[${res.code}] ${res.msg}`);
                     return
                 }
 

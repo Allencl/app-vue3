@@ -36,7 +36,12 @@ const routes = [
     meta:{tittle:"设备维修"},
     component: () => import('@/views/equipmentMaintain/index.vue')
   },
-
+  {
+    path: '/equipment/maintain/detail',
+    name: 'equipmentMaintainDetail',
+    meta:{tittle:"设备维修-详情"},
+    component: () => import('@/views/equipmentMaintain/detail.vue')
+  },
 
 
 
