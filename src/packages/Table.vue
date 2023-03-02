@@ -98,12 +98,14 @@ import { showSuccessToast, showFailToast } from 'vant';
         },
         // 初始化
         async initFunc(_current=1){
-            const {url}=this
+            const {url,params={}}=this
+    
             const {code,total,msg,rows}=await TableHTTP({
                 url:url,
                 url_params:{
                     pageNum: _current,
-                    pageSize: 10
+                    pageSize: 10,
+                    ...params,
                 }
             })
 
@@ -121,6 +123,11 @@ import { showSuccessToast, showFailToast } from 'vant';
             type: String,
             default: ()=> ""
         }, 
+        // 参数
+        params:{
+            type: Object,
+            default: ()=> {}
+        }
     }
   }
 </script>

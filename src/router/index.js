@@ -60,6 +60,22 @@ const routes = [
     meta:{tittle:"维修经验填写"},
     component: () => import('@/views/equipmentMaintain/experienceEdit.vue')
   },
+  {
+    path: '/equipment/equipmentAffirm',
+    name: 'equipmentAffirm',
+    meta:{tittle:"维修确认"},
+    component: () => import('@/views/equipmentAffirm/index.vue')
+  },
+  {
+    path: '/equipmentAffirm/detail',
+    name: 'equipmentAffirmDetail',
+    meta:{tittle:"发表评价"},
+    component: () => import('@/views/equipmentAffirm/detail.vue')
+  },
+
+
+
+
 
 
   {

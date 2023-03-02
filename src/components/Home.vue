@@ -110,7 +110,7 @@ export default {
                             text: '维修确认', 
                             icon: 'mdi-check-bold',
                             color: "#18FFFF",
-                            path: '/test/snackbar'
+                            path: '/equipment/equipmentAffirm'
                         },
                         { 
                             text: '维修派工', 
