@@ -42,7 +42,24 @@ const routes = [
     meta:{tittle:"设备维修-详情"},
     component: () => import('@/views/equipmentMaintain/detail.vue')
   },
-
+  {
+    path: '/equipment/maintain/experience',
+    name: 'equipmentMaintainExperience',
+    meta:{tittle:"维修经验查看"},
+    component: () => import('@/views/equipmentMaintain/experience.vue')
+  },
+  {
+    path: '/equipment/maintain/experienceDetail',
+    name: 'equipmentMaintainExperienceDetail',
+    meta:{tittle:"维修经验详情"},
+    component: () => import('@/views/equipmentMaintain/experienceDetail.vue')
+  },
+  {
+    path: '/equipment/maintain/experienceEdit',
+    name: 'equipmentMaintainExperienceEdit',
+    meta:{tittle:"维修经验填写"},
+    component: () => import('@/views/equipmentMaintain/experienceEdit.vue')
+  },
 
 
   {

@@ -25,8 +25,8 @@
                         <v-card>
                             <v-row no-gutters class="table-title">
                                 <v-col cols="6">
-                                    <v-icon icon="mdi-vuetify" size="16" color="primary"></v-icon>
-                                    <span class="font-weight-medium">维修设备{{ props.items.name }}</span>
+                                    <v-icon icon="mdi-dns" size="16" color="primary"></v-icon>
+                                    <span class="font-weight-medium">维修设备</span>
                                 </v-col>
                                 <v-col cols="6">
                                     <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ props.items.equipmentName }}</p>
@@ -101,8 +101,8 @@
                         <v-card>
                             <v-row no-gutters class="table-title">
                                 <v-col cols="6">
-                                    <v-icon icon="mdi-vuetify" size="16" color="primary"></v-icon>
-                                    <span class="font-weight-medium">维修设备{{ props.items.name }}</span>
+                                    <v-icon icon="mdi-dns" size="16" color="primary"></v-icon>
+                                    <span class="font-weight-medium">维修设备</span>
                                 </v-col>
                                 <v-col cols="6">
                                     <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ props.items.equipmentName }}</p>
@@ -226,9 +226,11 @@
         // 设备维修
         async equipmentMaintain(props){
             const {items}=props
-            console.log("设备维修")
-            
-            this.$router.push({path:'/equipment/maintain/detail', query: {}});
+            // console.log(items)
+            this.$router.push({
+                path:'/equipment/maintain/detail', 
+                query:{row: JSON.stringify(items) }
+            }) 
         }
     },
   }
