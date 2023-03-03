@@ -214,7 +214,7 @@
         async cancelReimbursement(){
             const {bufferRow}=this
 
-            const {}=await CancelHTTP({
+            const {code}=await CancelHTTP({
                 payload:{
                     tmBasEquipmentId: bufferRow.tmBasEquipmentId //当前数据的tmBasEquipmentId字段值
                 }
@@ -242,7 +242,7 @@
 
             // console.log( user )
             // return
-            
+
             const {code}=await AffirmHTTP({
                 payload:_json
             })
@@ -269,7 +269,7 @@
             // return
             this.$router.push({
                 path:'/equipment/maintain/experienceEdit', 
-                query:{ }
+                query:{ teAdRepairId: bufferRow.teAdRepairId }
             }) 
         },
         // 协助人

@@ -183,6 +183,8 @@
     import TableComponents from '@/packages/Table.vue'
 
     import {PreemptHTTP} from '@/http/equipment/maintain'   // api
+    import {CancelHTTP} from '@/http/equipment/maintain'   // api
+
     import { showSuccessToast,showFailToast } from 'vant';
 
   export default {
@@ -221,7 +223,18 @@
         // 取消维修
         async cancelMaintain(props){
             const {items}=props
-            console.log("取消维修")
+
+            const {code}=await CancelHTTP({
+                payload:{
+                    tmBasEquipmentId: items.tmBasEquipmentId //当前数据的tmBasEquipmentId字段值
+                }
+            })
+
+            if(code==200){
+                showSuccessToast('操作成功！')
+                this.$refs.table2.initFunc()
+            }
+
         },
         // 设备维修
         async equipmentMaintain(props){

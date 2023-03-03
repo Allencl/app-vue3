@@ -149,19 +149,19 @@
 
     }),
     created(){
-        // this.initFunc()
+        this.initFunc()
     },
     methods: {
         // 初始化
         async initFunc(){
-            const {ttAdRepairId}=this.$route.query
+            const {teAdRepairId}=this.$route.query
 
     
             const {data={}}=await ExperienceDetailHTTP({
                 // url_params:{
                 //     // "ttAdRepairId":ttAdRepairId, // "当前数据的ttAdRepairId字段值"
                 // }
-                url_RESTful:`/${ttAdRepairId}`   
+                url_RESTful:`/${teAdRepairId}`   
             })
 
             // this.bufferRow=data
