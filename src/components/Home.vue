@@ -112,36 +112,36 @@ export default {
                             color: "#18FFFF",
                             path: '/equipment/equipmentAffirm'
                         },
-                        { 
-                            text: '维修派工', 
-                            icon: 'mdi-account-hard-hat',
-                            color: "#689F38",
-                            path: '/test/bi'
-                        },
+                        // { 
+                        //     text: '维修派工', 
+                        //     icon: 'mdi-account-hard-hat',
+                        //     color: "#689F38",
+                        //     path: '/test/bi'
+                        // },
                         { 
                             text: '维修信息查询', 
                             icon: 'mdi-message-processing',
                             color: "#00BCD4",
                             path: '/equipmentMessage'
                         },
-                        { 
-                            text: '维修信息统计', 
-                            icon: 'mdi-calendar-text',
-                            color: "#D4E157",
-                            path: '/test/bi'
-                        },
-                        { 
-                            text: '维修工时统计', 
-                            icon: 'mdi-calendar-clock',
-                            color: "#3F51B5",
-                            path: '/test/bi'
-                        },
-                        { 
-                            text: '评价维修', 
-                            icon: 'mdi-text-box-edit',
-                            color: "#1DE9B6",
-                            path: '/test/bi'
-                        }
+                        // { 
+                        //     text: '维修信息统计', 
+                        //     icon: 'mdi-calendar-text',
+                        //     color: "#D4E157",
+                        //     path: '/test/bi'
+                        // },
+                        // { 
+                        //     text: '维修工时统计', 
+                        //     icon: 'mdi-calendar-clock',
+                        //     color: "#3F51B5",
+                        //     path: '/test/bi'
+                        // },
+                        // { 
+                        //     text: '评价维修', 
+                        //     icon: 'mdi-text-box-edit',
+                        //     color: "#1DE9B6",
+                        //     path: '/test/bi'
+                        // }
                     ]
                     break;             
                 case 'aaa':

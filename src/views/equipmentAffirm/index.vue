@@ -105,7 +105,7 @@
     import AppBarPage from '@/components/AppBar.vue'
     import TableComponents from '@/packages/Table.vue'
 
-    import {PreemptHTTP} from '@/http/equipment/maintain'   // api
+    import {OverHTTP} from '@/http/equipment/affirm'   // api
     import { showSuccessToast,showFailToast } from 'vant';
 
   export default {
@@ -119,14 +119,21 @@
 
     methods: {
         // 详情
-        detailClick(props){
+        async detailClick(props){
+            const {items}=props
             
-            this.$router.push({
-                path:'/equipmentAffirm/detail', 
-                query:{  
-                    row: JSON.stringify(props.items)
+
+            const {code}=await OverHTTP({
+                payload:{
+                    tmBasEquipmentId: items.tmBasEquipmentId,  // 当前数据的tmBasEquipmentId字段值
+                    productRepairBy: items.productRepairBy  // 当前数据的productRepairBy字段值
                 }
-            }) 
+            })
+
+            if(code==200){
+                showSuccessToast('操作成功！')
+                this.$refs.table1.initFunc()
+            }
         }   
 
 
