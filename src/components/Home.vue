@@ -122,7 +122,7 @@ export default {
                             text: '维修信息查询', 
                             icon: 'mdi-message-processing',
                             color: "#00BCD4",
-                            path: '/test/bi'
+                            path: '/equipmentMessage'
                         },
                         { 
                             text: '维修信息统计', 

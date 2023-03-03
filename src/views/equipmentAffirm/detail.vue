@@ -280,18 +280,15 @@
         cameraHandle(){
             showSuccessToast("建设中")
         },
-        // 确认维修
+        // 发布
         async onSubmit(){
-            const {bufferRow,checked,checked2,user}=this
+            const {bufferRow,radio,value1,value2,value3,value4,value5}=this
             const _json={
-                tmBasEquipmentId: bufferRow.tmBasEquipmentId,  // 当前数据的tmBasEquipmentId字段值,
-                isRepair:checked, // 当前数据的isRepair字段值 ,
-                isScrap:checked2, // 当前数据的isScrap字段值,
-                helpers: user,
+                
             }
 
             // console.log( user )
-            // return
+            return
             
             const {code}=await AffirmHTTP({
                 payload:_json

@@ -1,5 +1,8 @@
 import {httpHandle} from '@/http/http'
 
+/**
+ * 设备维修 设备维修
+*/
 
 // 抢单响应
 export const PreemptHTTP=async(params)=>{
@@ -37,7 +40,6 @@ export const ExperienceDetailHTTP= async(params)=>{
         url:"/stage-api/iiot/equipmentRepairHistory",
         method:'get',
         url_RESTful:params.url_RESTful,
-
     })
 }
 

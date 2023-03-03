@@ -72,9 +72,24 @@ const routes = [
     meta:{tittle:"发表评价"},
     component: () => import('@/views/equipmentAffirm/detail.vue')
   },
-
-
-
+  {
+    path: '/equipmentMessage',
+    name: 'equipmentMessage',
+    meta:{tittle:"维修历史信息"},
+    component: () => import('@/views/equipmentMessage/index.vue')
+  },
+  {
+    path: '/equipmentMessage',
+    name: 'equipmentMessage',
+    meta:{tittle:"维修历史信息"},
+    component: () => import('@/views/equipmentMessage/index.vue')
+  },
+  {
+    path: '/equipmentMessage/detail',
+    name: 'equipmentMessageDetail',
+    meta:{tittle:"维修经验填写"},
+    component: () => import('@/views/equipmentMessage/detail.vue')
+  },
 
 
 

@@ -6,10 +6,11 @@
         </AppBarPage>
 
         <div class="v-window-item-table">
-            <!-- :params="{ warinState:'CP' }" -->
+            <!-- :params="{ warinState:'MA' }" -->
             <TableComponents
                 ref="table1"
                 url="/stage-api/iiot/equipmentRepair/list"
+                :params="{ warinState:'MA' }"
             >
                 <template v-slot:tableBody="props">
                     <v-card>
