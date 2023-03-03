@@ -225,7 +225,7 @@
                 
                 this.$router.push({
                     path:'/equipment/maintain', 
-                    query:{ }
+                    query:{ tabs:2 }
                 }) 
             }
 
@@ -251,7 +251,7 @@
                 showSuccessToast('操作成功！')
                 this.$router.push({
                     path:'/equipment/maintain', 
-                    query:{ }
+                    query:{ tabs:2 }
                 }) 
             }
             

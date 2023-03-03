@@ -116,8 +116,7 @@
         </v-sheet>   
         
         <v-btn
-            variant="outlined"
-            color="primary"
+            elevation="2"
             block
             @click="onSubmit"
         >
@@ -158,24 +157,15 @@
 
     
             const {data={}}=await ExperienceDetailHTTP({
-                // url_params:{
-                //     // "ttAdRepairId":ttAdRepairId, // "当前数据的ttAdRepairId字段值"
-                // }
                 url_RESTful:`/${teAdRepairId}`   
+                // url_RESTful:"/462191250168418304"
             })
 
-            // this.bufferRow=data
+            this.bufferRow=data
         },
         // 提交
         async onSubmit(){
-
-
-                this.$router.push({
-                    path:'/equipment/maintain', 
-                    query:{ }
-                }) 
-            return
-            const {value1,value2,value3}=this
+            const {value1,value2,value3,bufferRow}=this
 
             if(!value1.trim()){
                 showFailToast("根本问题必填!")
@@ -193,8 +183,10 @@
             }
             
             const _json={
-
-
+                ...bufferRow,  // 行数据
+                rootWrain: value1, // 根本问题  
+                solvingMeasures: value2,   // 解决措施        
+                suggestionsImprovement: value3 // 改进建议    
             }
 
             const {code}=await SaveHistoryHTTP({
@@ -204,7 +196,7 @@
             if(code==200){
                 this.$router.push({
                     path:'/equipment/maintain', 
-                    query:{ }
+                    query:{ tabs:2 }
                 }) 
             }
 

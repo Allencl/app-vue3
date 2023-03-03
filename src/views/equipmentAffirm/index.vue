@@ -10,7 +10,6 @@
             <TableComponents
                 ref="table1"
                 url="/stage-api/iiot/equipmentRepair/list"
- 
             >
                 <template v-slot:tableBody="props">
                     <v-card>

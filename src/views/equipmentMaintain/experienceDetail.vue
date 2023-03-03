@@ -151,7 +151,11 @@
 
 
         </v-sheet>
-
+            <v-btn
+            elevation="2"
+            block
+            @click="backList"
+            >返回列表</v-btn>   
     </span>
 </template>
 <script>
@@ -190,6 +194,13 @@
         // 查看维修文件
         checkFile(){
             showSuccessToast('正在建设中！')
+        },
+        // 返回列表
+        backList(){
+            this.$router.push({
+                path:'/equipment/maintain', 
+                query:{ tabs:2 }
+            }) 
         }
 
     },

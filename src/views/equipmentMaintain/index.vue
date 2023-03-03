@@ -95,7 +95,7 @@
                 <TableComponents
                     v-if="tab=='2'"
                     ref="table2"
-                    url="/stage-api/iiot/equipmentRepair/list"
+                    url="/stage-api/iiot/equipmentRepair/listForApp"
                 >
                     <template v-slot:tableBody="props">
                         <v-card>
@@ -195,8 +195,18 @@
     data: () => ({
         tab: '1',
     }),
-
+    created(){
+        this.initFunc()
+    },
     methods: {
+        // 初始化
+        initFunc(){
+            const {tabs}=this.$route.query
+
+            if(tabs){
+                this.tab=tabs
+            }
+        },
         /**
          * 抢单响应
         */
