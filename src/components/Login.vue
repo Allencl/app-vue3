@@ -115,7 +115,7 @@
         >
           登 录
         </v-btn>
-  
+        <span>{{ abc }}</span>
         <!-- <v-card-text class="text-center">
           <a
             class="text-blue text-decoration-none"
@@ -176,6 +176,7 @@ const privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMNRZC14Svlk
 
   export default {
     data: () => ({
+        abc:'',
 
         // 表单数据
         formValue:{
@@ -198,6 +199,11 @@ const privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMNRZC14Svlk
           const {uuid,img}=await codeHTTP()
           // console.log(img)
 
+          // bbb
+          const aaa=localStorage.getItem("aaa")
+          this.abc=aaa
+
+
           this.data64Image=`data:image/gif;base64,${img}`
           this.uuid=uuid
         },
@@ -208,7 +214,12 @@ const privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMNRZC14Svlk
             const {valid} = await this.$refs.form.validate()
 
 
-
+            // 111
+            localStorage.setItem("aaa", JSON.stringify({
+              name:name,
+              password:password,
+              code:code
+            }) )
 
             if(!valid){
               // alert('表单不完整！')
