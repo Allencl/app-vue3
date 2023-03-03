@@ -218,7 +218,10 @@
         // 查看维修经验
         async checkExperience(props){
             const {items}=props
-            console.log("查看维修经验")
+            this.$router.push({
+                path:'/equipment/maintain/experience', 
+                query:{ }
+            }) 
         },
         // 取消维修
         async cancelMaintain(props){

@@ -101,7 +101,7 @@
         <v-sheet elevation="2" rounded class="custem-card">
             <v-row no-gutters class="custem-card-title">
                 <v-col cols="6">
-                    <v-icon icon="mdi-bullhorn" size="16" color="primary"></v-icon>
+                    <v-icon icon="mdi-tag-text" size="16" color="primary"></v-icon>
                     <span class="font-weight-medium">维修经验</span>
                 </v-col>
                 <v-col cols="6">
