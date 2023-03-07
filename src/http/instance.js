@@ -12,6 +12,11 @@ axios.defaults.withCredentials = true
 
 // base url
 // axios.defaults.baseURL=process.env.VUE_APP_SERVER_API_BASE
+// axios.defaults.baseURL="http://192.168.0.113:8188/"
+axios.defaults.baseURL= process.env.NODE_ENV=="development"? "":"http://192.168.0.113:8188/"
+
+
+
 
 const instance = axios.create()
 
