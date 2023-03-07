@@ -3,6 +3,7 @@ const { defineConfig } = require('@vue/cli-service')
 const timeStamp = new Date().getTime()
 
 module.exports = defineConfig({
+  publicPath:"./",  // apk 打包
   transpileDependencies: true,
   lintOnSave: false,
   devServer: {
