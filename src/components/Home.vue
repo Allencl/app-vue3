@@ -139,7 +139,7 @@ export default {
                             text: '保养信息查询', 
                             icon: 'mdi-clock',
                             color:"#FF9800",
-                            path: '/test/date' 
+                            path: '/maintainMessage/index' 
                         },
                     ]
                     break;

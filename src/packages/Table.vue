@@ -32,12 +32,18 @@
         </v-card>
 
         <slot 
+            v-if="items.length"
             v-for="(o,i) in items" :key="i" 
             name="tableBody" 
             :items="o"
             :_index="i"
         >
         </slot>
+        <p v-else class="text-center" style="padding-top:12px;">
+            <v-icon icon="mdi-emoticon-sad-outline"></v-icon>
+            无数据！
+        </p>
+
     
     </span>
 </template>
@@ -67,7 +73,12 @@ import { showSuccessToast, showFailToast } from 'vant';
         ]
     }),
     created(){
-        this.initFunc()
+        const {auto}=this
+
+        if(auto){
+            this.initFunc()
+        }
+
     },
     methods: {
         // 上一页
@@ -126,6 +137,11 @@ import { showSuccessToast, showFailToast } from 'vant';
         }
     },
     props: {
+        // 自动初始化
+        auto:{
+            type: Boolean,
+            default: ()=> true
+        },
         // 子级
         children:{
             type: Array,

@@ -195,7 +195,9 @@
     import {httpHandle} from '@/http/http'  // api
 
 
-    import { showSuccessToast,showFailToast } from 'vant';
+    import { showSuccessToast,showFailToast } from 'vant'
+    import { showDialog  } from 'vant'
+
 
   export default {
     components:{
@@ -243,20 +245,33 @@
         async cancelHandle(props){
             const {items}=props
 
-    
-            const {code}= await httpHandle({
-                url:"/stage-api/iiot/mainTask/cancelwbImp",
-                method:'post',
-                payload:{
-                    teWbMainTaskId: items.teWbMainTaskId,  // 当前数据的teWbMainTaskId字段  维保任务id, 
+            showDialog({
+                title: '取消确认',
+                message: '取消后数据不可恢复，确认取消！',
+                theme: 'round-button',
+                closeOnClickOverlay:true,
+            }).then(async () => {
+
+
+                const {code}= await httpHandle({
+                    url:"/stage-api/iiot/mainTask/cancelwbImp",
+                    method:'post',
+                    payload:{
+                        teWbMainTaskId: items.teWbMainTaskId,  // 当前数据的teWbMainTaskId字段  维保任务id, 
+                    }
+                })
+
+
+                if(code==200){
+                    showSuccessToast('操作成功！')
+                    this.$refs.table2.initFunc()
                 }
-            })
 
 
-            if(code==200){
-                showSuccessToast('操作成功！')
-                this.$refs.table2.initFunc()
-            }
+            });
+
+    
+
 
         },
         // 实施报工

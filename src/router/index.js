@@ -109,6 +109,23 @@ const routes = [
     meta:{tittle:"工时添加"},
     component: () => import('@/views/maintain/add.vue')
   },
+  {
+    path: '/maintainMessage/index',
+    name: 'maintainMessageIndex',
+    meta:{tittle:"保养历史信息"},
+    component: () => import('@/views/maintainMessage/index.vue')
+  },
+  {
+    path: '/maintainMessage/detail',
+    name: 'maintainMessageDetail',
+    meta:{tittle:"工时信息"},
+    component: () => import('@/views/maintainMessage/detail.vue')
+  },
+
+
+
+
+
 
 
 

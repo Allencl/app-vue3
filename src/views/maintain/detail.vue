@@ -148,8 +148,8 @@
     import TableComponents from '@/packages/Table.vue'
 
     import {httpHandle} from '@/http/http'  // api
-    import { showSuccessToast,showFailToast } from 'vant';
-    import { showDialog  } from 'vant';
+    import { showSuccessToast,showFailToast } from 'vant'
+    import { showDialog  } from 'vant'
 
   export default {
     components:{
@@ -198,23 +198,37 @@
 
             
             const _json={
-                // ...bufferRow,  // 行数据
-                // rootWrain: value1, // 根本问题  
-                // solvingMeasures: value2,   // 解决措施        
-                // suggestionsImprovement: value3 // 改进建议    
+                equipmentName: bufferRow.equipmentName,  // 当前数据equipmentName字段
+                expireTime: bufferRow.expireTime,  // 当前数据expireTime字段
+                faultStationCn: bufferRow.faultStationCn,  // 当前数据faultStationCn字段 
+                manitainContent: bufferRow.manitainContent,  // 当前数据manitainContent字段
+                implementContent: value1, // 输入框,/*实施内容*/
+                planImplementBy: bufferRow.planImplementBy, // 当前数据planImplementBy字段 
+                wbSt: bufferRow.wbSt,  // 当前数据wbSt字段 
+                wbTt: bufferRow.wbTt,  // 当前数据wbTt字段
+                tmBasEquipmentId: bufferRow.tmBasEquipmentId, // 当前数据tmBasEquipmentId 字段
+                machineType: bufferRow.machineType, // 当前数据machineType字段
+                teWbMainTaskId: bufferRow.teWbMainTaskId, // 当前数据teWbMainTaskId字段
+                tmWbMainPlanId: bufferRow.tmWbMainPlanId, // 当前数据tmWbMainPlanId字段
+                wbMais: bufferRow.wbMais,  // 当前数据wbMais 字段 IO
             }
 
-            // const {code}=await SaveHTTP({
-            //     payload:_json 
-            // })
 
-            // if(code==200){
-            //     showSuccessToast('提交成功！')
-            //     this.$router.push({
-            //         path:'/equipmentMessage', 
-            //         query:{ tabs:2 }
-            //     }) 
-            // }
+
+            const {code,data={}}= await httpHandle({
+                url:'/stage-api/iiot/mainTask/wbJob',
+                method: "post",
+                payload:_json
+            })
+
+
+            if(code==200){
+                showSuccessToast('操作成功！')
+                this.$router.push({
+                    path:'/maintain/index', 
+                    query:{ tabs:2 }
+                }) 
+            }
 
         },
         // 添加工时

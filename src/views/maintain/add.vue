@@ -86,6 +86,7 @@
 
 
     import moment from "moment"
+import { windowWidth } from 'vant/lib/utils'
 
   export default {
     components:{
@@ -154,6 +155,7 @@
             
             const _json={
                 teWbMainTaskId: bufferRow.teWbMainTaskId,  // 当前数据的teWbMainTaskId字段  维保任务id", 
+                ttWbWorkhoursId: bufferRow.ttWbWorkhoursId,  // "当前数据的ttWbWorkhoursid字段  工时id"
                 maintainBy: user, // 维护人 选中数据的 userName
                 actualDuration:time , // 填写的  工作内容
                 workContent: content, // 填写的 维护工时
@@ -162,7 +164,7 @@
 
             const {code,data={}}= await httpHandle({
                 url:'/stage-api/iiot/workhours',
-                method:'post',
+                method: bufferRow.ttWbWorkhoursId?'PUT':"post",
                 payload:_json
             })
 
