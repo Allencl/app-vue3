@@ -91,6 +91,25 @@ const routes = [
     component: () => import('@/views/equipmentMessage/detail.vue')
   },
 
+  {
+    path: '/maintain/index',
+    name: 'maintainIndex',
+    meta:{tittle:"设备保养"},
+    component: () => import('@/views/maintain/index.vue')
+  },
+  {
+    path: '/maintain/detail',
+    name: 'maintainDetail',
+    meta:{tittle:"实施报工"},
+    component: () => import('@/views/maintain/detail.vue')
+  },
+  {
+    path: '/maintain/add',
+    name: 'maintainAdd',
+    meta:{tittle:"工时添加"},
+    component: () => import('@/views/maintain/add.vue')
+  },
+
 
 
   {

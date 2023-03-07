@@ -7,7 +7,7 @@
         <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
-                    name="maintain"
+                    name="service"
                     title="设备维修"
                     icon="mdi-tools"
                     color-icon="#3F51B5"
@@ -16,10 +16,10 @@
             </v-col>
             <v-col cols="6">
                 <CardBtnComponent 
-                    name="ddd"
-                    title="供应商4"
-                    icon="mdi-thumb-down"
-                    color-icon="red"
+                    name="maintain"
+                    title="设备保养"
+                    icon="mdi-dns"
+                    color-icon="#8BC34A"
                     @clickCard="btnCardHandle"
                 />
             </v-col>
@@ -92,7 +92,7 @@ export default {
             let items=[];
 
             switch (name) {
-                case 'maintain':
+                case 'service':
                 items=[
                         { 
                             text: '设备报修', 
@@ -121,56 +121,26 @@ export default {
                         { 
                             text: '维修信息查询', 
                             icon: 'mdi-message-processing',
-                            color: "#00BCD4",
+                            color:"#FF9800",
                             path: '/equipmentMessage'
                         },
-                        // { 
-                        //     text: '维修信息统计', 
-                        //     icon: 'mdi-calendar-text',
-                        //     color: "#D4E157",
-                        //     path: '/test/bi'
-                        // },
-                        // { 
-                        //     text: '维修工时统计', 
-                        //     icon: 'mdi-calendar-clock',
-                        //     color: "#3F51B5",
-                        //     path: '/test/bi'
-                        // },
-                        // { 
-                        //     text: '评价维修', 
-                        //     icon: 'mdi-text-box-edit',
-                        //     color: "#1DE9B6",
-                        //     path: '/test/bi'
-                        // }
+
                     ]
                     break;             
-                case 'aaa':
+                case 'maintain':
                     items=[
                         { 
-                            text: '表单页面', 
-                            icon: 'mdi-clock',
-                            path: '/test/form' 
+                            text: '设备保养', 
+                            icon: 'mdi-dns',
+                            color:'#8BC34A',
+                            path: '/maintain/index' 
                         },
                         { 
-                            text: '日期页面', 
+                            text: '保养信息查询', 
                             icon: 'mdi-clock',
+                            color:"#FF9800",
                             path: '/test/date' 
                         },
-                        { 
-                            text: '消息页面', 
-                            icon: 'mdi-clock',
-                            path: '/test/snackbar'
-                        },
-                        { 
-                            text: 'BI', 
-                            icon: 'mdi-clock',
-                            path: '/test/bi'
-                        },
-
-
-                        
-                        
-
                     ]
                     break;
                 case 'bbb':

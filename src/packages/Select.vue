@@ -49,6 +49,7 @@
 
         <van-picker
             v-else
+            v-model="selectedValues"
             :columns="option"
             @cancel="showPicker = false"
             @confirm="onConfirm"
@@ -65,6 +66,7 @@ import { showSuccessToast, showFailToast } from 'vant';
     },
     emits: ["update:value","onChange"],
     data: () => ({
+        selectedValues: [],
         columns:[
             // { text: '杭州', value: 'Hangzhou' },
             // { text: '宁波', value: 'Ningbo' },
@@ -77,6 +79,17 @@ import { showSuccessToast, showFailToast } from 'vant';
     }),
 
     methods: {
+        // 设置 初始值
+        setValue(value){
+            const {option=[]}=this
+
+            const _option=option.filter(o=>o.value==value)[0]
+
+
+            this.selectedValues=[_option.value]
+            this.fieldValue=_option.text
+            this.$emit('update:value', value)
+        },
         onConfirm({ selectedOptions }){
             const {value,text}=selectedOptions[0]
 

@@ -1,7 +1,7 @@
 <template>
     <span>
  
-        <v-card elevation="0" style="margin-bottom: 0px;">
+        <v-card v-if="paging" elevation="0" style="margin-bottom: 0px;">
             <v-btn
                 variant="outlined"
                 size="x-small"
@@ -55,6 +55,8 @@ import { showSuccessToast, showFailToast } from 'vant';
         current:1, // 当前
         page:0,    // 页数
 
+        paging:true,   // 分页
+
         // 列表数据
         items:[
             // {
@@ -98,7 +100,13 @@ import { showSuccessToast, showFailToast } from 'vant';
         },
         // 初始化
         async initFunc(_current=1){
-            const {url,params={}}=this
+            const {url,params={},children}=this
+
+            if(children){
+                this.items=children
+                this.paging=false
+                return
+            }
     
             const {code,total,msg,rows}=await TableHTTP({
                 url:url,
@@ -118,6 +126,11 @@ import { showSuccessToast, showFailToast } from 'vant';
         }
     },
     props: {
+        // 子级
+        children:{
+            type: Array,
+            default: ()=> undefined
+        },
         // url
         url:{
             type: String,
