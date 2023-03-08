@@ -24,6 +24,11 @@
         <van-button type="warning">警告按钮</van-button>
         <van-button type="danger">危险按钮</van-button>
 
+        <div>
+            111
+        </div>
+        <van-uploader :after-read="afterRead" />
+
     </span>
 </template>
 <script>
@@ -50,6 +55,16 @@
 
             showSuccessToast('成功文案');
             // showFailToast('失败文案');
+        },
+        afterRead (file){
+            const _file=JSON.stringify(file)
+
+            showSuccessToast({  
+                duration: 20000,
+                message: _file
+            })
+            // 此时可以自行将文件上传至服务器
+            // console.log( JSON.stringify(file) );
         }
     },
   }

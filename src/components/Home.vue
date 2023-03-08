@@ -37,7 +37,7 @@
             </v-col>
         </v-row>
 
-        <!-- <v-row class="home-card">
+        <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
                     name="aaa"
@@ -47,7 +47,7 @@
                     @clickCard="btnCardHandle"
                 />
             </v-col>
-            <v-col cols="6">
+            <!-- <v-col cols="6">
                 <CardBtnComponent 
                     name="bbb"
                     title="供应商2"
@@ -55,8 +55,8 @@
                     color-icon="red"
                     @clickCard="btnCardHandle"
                 />
-            </v-col>
-        </v-row> -->
+            </v-col> -->
+        </v-row>
 
 
 
@@ -166,7 +166,18 @@ export default {
                         { text: '异常关闭',color:'#F4511E', icon: 'mdi-close-circle-outline' },
                     ]
                     break;                    
-            
+                // 测试页面
+                case 'aaa':
+                    items=[
+                        { 
+                            text: '图片上传', 
+                            icon: 'mdi-message-processing',
+                            color:"#FF9800",
+                            path: '/test/snackbar'
+                        },
+
+                    ]
+                    break;    
                 default:
                     break;
             }

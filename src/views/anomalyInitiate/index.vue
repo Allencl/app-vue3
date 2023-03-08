@@ -9,7 +9,7 @@
             <!--  url="/stage-api/iiot/abnormal/list" -->
             <TableComponents
                 ref="table1"
-                url="/stage-api/iiot/maintain/list"
+                url="/stage-api/iiot/abnormal/list"
                 :showSearchBtn="true"
                 @searchClick="searchClick"
             >
