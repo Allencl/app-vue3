@@ -7,8 +7,9 @@ import { showSuccessToast,showFailToast } from 'vant'
 
 // post 请求
 export const httpHandle = async(option={})=>{
-    const {access_token}=store.state.actionsStore.bufferLoginMessage
+    // const {access_token}=store.state.actionsStore.bufferLoginMessage
     // console.log(access_token)
+    const access_token=localStorage.getItem("_token")
 
     try {
 

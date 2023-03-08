@@ -25,8 +25,19 @@
             </v-col>
         </v-row>
 
-
         <v-row class="home-card">
+            <v-col cols="6">
+                <CardBtnComponent 
+                    name="abnormal"
+                    title="异常处理"
+                    icon="mdi-alert"
+                    color-icon="#FF9800"
+                    @clickCard="btnCardHandle"
+                />   
+            </v-col>
+        </v-row>
+
+        <!-- <v-row class="home-card">
             <v-col cols="6">
                 <CardBtnComponent 
                     name="aaa"
@@ -45,7 +56,7 @@
                     @clickCard="btnCardHandle"
                 />
             </v-col>
-        </v-row>
+        </v-row> -->
 
 
 
@@ -92,8 +103,9 @@ export default {
             let items=[];
 
             switch (name) {
+                // 设备维修
                 case 'service':
-                items=[
+                    items=[
                         { 
                             text: '设备报修', 
                             icon: 'mdi-bullhorn',
@@ -126,7 +138,8 @@ export default {
                         },
 
                     ]
-                    break;             
+                    break; 
+                // 设备保养            
                 case 'maintain':
                     items=[
                         { 
@@ -143,17 +156,14 @@ export default {
                         },
                     ]
                     break;
-                case 'bbb':
+                // 异常处理
+                case 'abnormal':
                     items=[
-                        { text: 'Real-Time2', icon: 'mdi-clock' },
-                        { text: 'Audience2', icon: 'mdi-account' },
-                        { text: 'Conversions2', icon: 'mdi-flag' },
-                        { text: 'Real-Time2', icon: 'mdi-clock' },
-                        { text: 'Audience2', icon: 'mdi-account' },
-                        { text: 'Conversions2', icon: 'mdi-flag' },
-                        { text: 'Real-Time2', icon: 'mdi-clock' },
-                        { text: 'Audience2', icon: 'mdi-account' },
-                        { text: 'Conversions2', icon: 'mdi-flag' },
+                        { text: '异常发起',path:"/anomalyInitiate/index", color:'#8BC34A', icon: 'mdi-rocket-launch' },
+                        { text: '异常转发',color:'#AFB42B', icon: 'mdi-forwardburger' },
+                        { text: '异常指派',color:'#303F9F', icon: 'mdi-clipboard-arrow-left' },
+                        { text: '异常处理',color:'#43A047', icon: 'mdi-monitor-small' },
+                        { text: '异常关闭',color:'#F4511E', icon: 'mdi-close-circle-outline' },
                     ]
                     break;                    
             

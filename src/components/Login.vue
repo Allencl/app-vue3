@@ -66,7 +66,7 @@
         </v-card> -->
 
         <v-row no-gutters>
-          <v-col cols="5">
+          <v-col cols="4">
             <v-text-field
               v-model="formValue.code"
               placeholder="验证码"
@@ -81,7 +81,7 @@
           </v-col>
           <v-col cols="7" class="pl-3">
             <v-img
-              style="display: inline-block;position:relative;top:3px;"
+              style="height:42px;width:98px;display: inline-block;position:relative;top:0px;"
               height="35"
               width="82"
               :src="data64Image"
@@ -91,7 +91,7 @@
               color="primary"
               density="compact"
               variant="plain"
-              style="padding:0px;position:relative;top:-8px;left:6px;"
+              style="padding:0px;position:relative;top:-16px;left:8px;"
               @click="getCode"
             >
               获取验证码
@@ -115,7 +115,7 @@
         >
           登 录
         </v-btn>
-        <span>{{ abc }}</span>
+
         <!-- <v-card-text class="text-center">
           <a
             class="text-blue text-decoration-none"
@@ -134,6 +134,7 @@
   import {JSEncrypt} from 'jsencrypt'
   import {loginHTTP,codeHTTP} from '@/http/login'   // api
   import { showSuccessToast,showFailToast } from 'vant'
+  import {httpHandle} from '@/http/http'  // api
 
 
   
@@ -176,12 +177,12 @@ const privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMNRZC14Svlk
 
   export default {
     data: () => ({
-        abc:'',
+
 
         // 表单数据
         formValue:{
-            name: 'admin',   
-            password:'admin123',
+            name: '',   
+            password:'',
             code:""    
         },
 
@@ -199,51 +200,81 @@ const privateKey = 'MIICdwIBADANBgkqhkiG9w0BAQEFAASCAmEwggJdAgEAAoGBAMNRZC14Svlk
           const {uuid,img}=await codeHTTP()
           // console.log(img)
 
-          // bbb
-          const aaa=localStorage.getItem("aaa")
-          this.abc=aaa
+          // 登录信息
+          const {name,password}= JSON.parse( localStorage.getItem("bufferLoginMessage") || "{}" )
+          this.formValue.name=name   
+          this.formValue.password=password
 
 
           this.data64Image=`data:image/gif;base64,${img}`
           this.uuid=uuid
+
+          this.formValue.code=""
         },
         async loginHandle () {
             const {uuid}=this;
-            const {code}=this.formValue
+            const _code=this.formValue.code
             const {name,password} = this.formValue
             const {valid} = await this.$refs.form.validate()
 
 
-            // 111
-            localStorage.setItem("aaa", JSON.stringify({
-              name:name,
-              password:password,
-              code:code
-            }) )
+
 
             if(!valid){
               // alert('表单不完整！')
               return
             }
 
-            const {data}=await loginHTTP({
+            const {code,data={}}=await loginHTTP({
               payload:{
-                code: code,
+                code: _code,
                 uuid: uuid,
                 username:name,
                 password:encrypt( password )
               }
             });
 
-            // console.log(data)
 
-            this.$store.dispatch("bufferLoginMessageStore", data ) // 缓存登录信息
-            // console.log(  this.$store.state.actionsStore.bufferLoginMessage  )
+            if(code==200){
+              // 登录信息
+              localStorage.setItem("bufferLoginMessage", JSON.stringify({
+                name:name,
+                password:password,
+              }))
 
-            showSuccessToast('登录成功！');
-            this.$router.push("/");
+              // token
+              localStorage.setItem("_token",data.access_token)
 
+              // 获取 用户信息
+              this.getUserInfo()
 
+              // 获取 数据字典
+              this.dictionariesGET()
+
+              showSuccessToast('登录成功！');
+              this.$router.push("/");
+            }
+
+        },
+        async getUserInfo(){
+          const {code,data={},user={}}= await httpHandle({
+            url:'/stage-api/system/user/getInfo',
+            method:'GET'
+          })
+
+          if(code==200){
+            localStorage.setItem("bufferUserInfo", JSON.stringify(user) )
+          }
+        },
+        // 全局数据字典
+        async dictionariesGET(){
+          
+          const obj= await httpHandle({
+            url:'/stage-api/iiot/nodeLevel/getDicts',
+            method:'GET'
+          })
+
+          localStorage.setItem("bufferDictionaries",JSON.stringify(obj||{}))
         },
         getCode(){
           this.initFunc()

@@ -87,6 +87,7 @@ export default {
 
             switch (value) {
                 case "out":
+                    localStorage.setItem("_token","")
                     this.$router.push("/login");
                     break;
             

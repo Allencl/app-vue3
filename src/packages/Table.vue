@@ -29,6 +29,13 @@
                 <span style="padding-left:2px;padding-right:2px;">{{ page }}</span>
                 <span>页</span>
             </span>
+
+            <span v-if="showSearchBtn" style="position:relative;top:1px;margin-left:16px;">
+                <v-btn @click="searchClick" variant="plain" color="primary">
+                    <v-icon size="24" icon="mdi-magnify"></v-icon>
+                    查询
+                </v-btn>
+            </span>
         </v-card>
 
         <slot 
@@ -55,7 +62,7 @@ import { showSuccessToast, showFailToast } from 'vant';
     components:{
 
     },
-    emits: [],
+    emits: ["searchClick"],
     data: () => ({
         total:8,   // 总
         current:1, // 当前
@@ -134,9 +141,17 @@ import { showSuccessToast, showFailToast } from 'vant';
                 this.items=rows
             } 
 
+        },
+        searchClick(){
+            this.$emit("searchClick")
         }
     },
     props: {
+        // 显示 查询 按钮
+        showSearchBtn:{
+            type: Boolean,
+            default: ()=> false        
+        },
         // 自动初始化
         auto:{
             type: Boolean,

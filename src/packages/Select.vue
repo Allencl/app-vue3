@@ -91,6 +91,12 @@ import { showSuccessToast, showFailToast } from 'vant';
             this.$emit('update:value', value)
         },
         onConfirm({ selectedOptions }){
+            
+            if(!selectedOptions[0]) {
+                this.showPicker = false
+                return
+            }
+
             const {value,text}=selectedOptions[0]
 
             this.showPicker = false

@@ -121,10 +121,42 @@ const routes = [
     meta:{tittle:"工时信息"},
     component: () => import('@/views/maintainMessage/detail.vue')
   },
-
-
-
-
+  {
+    path: '/anomalyInitiate/index',
+    name: 'anomalyInitiateIndex',
+    meta:{tittle:"异常发起"},
+    component: () => import('@/views/anomalyInitiate/index.vue')
+  },
+  {
+    path: '/anomalyInitiate/detail',
+    name: 'anomalyInitiateDetail',
+    meta:{tittle:"异常详情"},
+    component: () => import('@/views/anomalyInitiate/detail.vue')
+  },
+  {
+    path: '/anomalyInitiate/transpond',
+    name: 'anomalyInitiateTranspond',
+    meta:{tittle:"异常转发"},
+    component: () => import('@/views/anomalyInitiate/transpond.vue')
+  },
+  {
+    path: '/anomalyInitiate/appoint',
+    name: 'anomalyInitiateAppoint',
+    meta:{tittle:"异常指派"},
+    component: () => import('@/views/anomalyInitiate/appoint.vue')
+  },
+  {
+    path: '/anomalyInitiate/dispose',
+    name: 'anomalyInitiateDispose',
+    meta:{tittle:"异常处理"},
+    component: () => import('@/views/anomalyInitiate/dispose.vue')
+  },
+  {
+    path: '/anomalyInitiate/close',
+    name: 'anomalyInitiateClose',
+    meta:{tittle:"异常关闭"},
+    component: () => import('@/views/anomalyInitiate/close.vue')
+  },
 
 
 
