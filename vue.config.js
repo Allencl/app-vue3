@@ -10,13 +10,18 @@ module.exports = defineConfig({
     proxy: {
       '': {
         // 此处的写法，目的是为了 将 /api 替换成 https://www.baidu.com/d
-        target: 'http://192.168.0.113:8188/',
+        // target: 'http://192.168.0.113:8188/',
+        target: 'http://172.16.65.249/',   // 测试环境
+        // target: 'http://172.16.21.234:80/',   // 老左
+
+
         // target:process.env.VUE_APP_SERVER_API_BASE,
         // 允许跨域
         changeOrigin: true,
         ws: true,
         pathRewrite: {
           '^/': '/'
+          // '^/stage-api': '/dev-api'
         }
       },
     }

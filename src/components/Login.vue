@@ -65,7 +65,7 @@
           </v-card-text>
         </v-card> -->
 
-        <v-row no-gutters>
+        <!-- <v-row no-gutters>
           <v-col cols="4">
             <v-text-field
               v-model="formValue.code"
@@ -98,7 +98,7 @@
             </v-btn>
           </v-col>
 
-        </v-row>
+        </v-row> -->
 
         </v-form>
 

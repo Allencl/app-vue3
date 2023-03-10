@@ -66,6 +66,7 @@
 </template>
 <script>
     import SelectComponents from '@/packages/Select.vue'
+    import {httpHandle} from '@/http/http'  // api
 
 
     import {FactoryTreeHTTP} from '@/http/equipment/repairs'   // api
@@ -76,6 +77,7 @@
     components:{
         SelectComponents
     },
+    emits: ["searchHandle"],
     data: () => ({
         drawer: false,
 
@@ -83,6 +85,7 @@
         fieldValue:"",  // 工厂显示值
         options:[],    // 工厂 数据
 
+        factoryID:"",   // 工厂选中ID
 
         type:"",   // 异常类型
         typeSelectOption:[],   // 异常类型数据
@@ -95,36 +98,88 @@
     }),
     created(){
         this.initFunc()
-        this.initRepairman()
-
+        // this.initRepairman()
+        this.getTypeHttp()
     },
     methods: {
         // 初始化 下拉框
         async initFunc(){
             // 数据字典
-            // const _bufferDictionaries=JSON.parse(localStorage.getItem("bufferDictionaries")||"{}")
-            // console.log(_bufferDictionaries)
+            // 属性   abnormal_type
+            // 状态     abnormal_state
+            // 紧急程度   urgent_degree
+
+            const _bufferDictionaries=JSON.parse(localStorage.getItem("bufferDictionaries")||"{}")
+
+
+            const _selectAttribute=_bufferDictionaries["abnormal_type"]||[]    // 属性
+            const _selectStatus=_bufferDictionaries["abnormal_state"]||[]     // 状态
+            // const _selectUrgentDegree=_bufferDictionaries["urgent_degree"]||[]     // 紧急程度
+
+            this.propertySelectOption=_selectAttribute.map(o=>Object.assign({text:o.lable,value:o.value}))   // 属性数据
+            this.statusSelectOption=_selectStatus.map(o=>Object.assign({text:o.lable,value:o.value}))   // 状态数据
+      
+
 
             // 工厂节点数据
             const {data=[]} = await FactoryTreeHTTP()
             const _tree=FormatTree(data,"tmBasNodeLevelId", "parentId")
             this.options=_tree
         },
+        // 异常类型
+        async getTypeHttp(){
+
+            // 展示  abnormalNo + abnormalName   
+            // 取值  tmBasAbnormalTypeId
+            const {code,rows=[]}= await httpHandle({
+                url:'/stage-api/iiot/abnormalType/listAbnormalTypeForSelect',
+                method:"get",
+                url_params:{
+                    // ttQmAbnormalId:ttQmAbnormalId
+                    abnormalNo:""
+                }
+    
+            }) 
+
+            if(code==200){
+                this.typeSelectOption=rows.map(o=>Object.assign({
+                    text:o.abnormalNo+o.abnormalName,
+                    value:o.tmBasAbnormalTypeId
+                }))  
+            }
+        },    
         // 工厂 完成
         onFinish ({ selectedOptions }){
             this.show = false;
-            // console.log(selectedOptions)
+
+            if(!selectedOptions.length) return
+
+            // tmBasNodeLevelId:“465621691089092608
+            let _tmBasNodeLevelId= (selectedOptions[ selectedOptions.length-1 ]||{})["tmBasNodeLevelId"]
+            
+            this.factoryID=_tmBasNodeLevelId
             this.fieldValue = selectedOptions.map((o) => o.nodeLevelName).join('/')
         },
         // 异常类型
         async initRepairman(){
-            const {rows=[]}=await RepairmanHTTP()
-            this.typeSelectOption=rows.map(o=> Object.assign({text:`${o.userName}-${o.nickName}`,value:o.userName}))
-        
+            // const {rows=[]}=await RepairmanHTTP()
+            // this.typeSelectOption=rows.map(o=> Object.assign({text:`${o.userName}-${o.nickName}`,value:o.userName}))
         },
         // 查询
         searchClick(){
+            const {factoryID,type,property,status}=this;
+
+            const _json={
+                tmBasNodeLevelId:factoryID,  // 工厂
+                tmBasAbnormalTypeId:type,       // 异常类型
+                abnormalType:property,    // 属性
+                abnormalState:status,     // 状态
+
+            }
+
+            this.$emit("searchHandle",_json)
             this.drawer=false
+
         },
         showDrawer(){
             this.drawer=true

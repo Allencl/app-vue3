@@ -157,8 +157,12 @@ const routes = [
     meta:{tittle:"异常关闭"},
     component: () => import('@/views/anomalyInitiate/close.vue')
   },
-
-
+  {
+    path: '/anomalyInitiate/sponsor',
+    name: 'anomalySponsor',
+    meta:{tittle:"发起异常"},
+    component: () => import('@/views/anomalyInitiate/sponsor.vue')
+  },
 
 
   {

@@ -5,6 +5,10 @@
 
         </AppBarPage>
 
+        <v-btn @click="sponsorHandle">
+            发起异常
+        </v-btn>
+
         <div class="v-window-item-table">
             <!--  url="/stage-api/iiot/abnormal/list" -->
             <TableComponents
@@ -16,12 +20,16 @@
                 <template v-slot:tableBody="props">
                     <v-card>
                         <v-row no-gutters class="table-title">
-                            <v-col cols="6">
+                            <v-col cols="4">
                                 <v-icon icon="mdi-dns" size="16" color="primary"></v-icon>
                                 <span class="font-weight-medium">异常流水</span>
                             </v-col>
-                            <v-col cols="6">
-                                <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ props.items.equipmentName }}</p>
+                            <v-col cols="5">
+                                <p class="font-weight-medium text-truncate text-center text-teal-lighten-1" color="primary">{{ props.items.abnormalNo  }}</p>
+                            </v-col>
+                            
+                            <v-col cols="3">
+                                <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ formatStatus(props.items)  }}</p>
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="text">
@@ -29,7 +37,7 @@
                                 <p class="font-weight-medium text">异常类型:</p>
                             </v-col>
                             <v-col cols="8">
-                                <p class="text-truncate font-weight-light">{{ props.items.wbTt   }}</p>
+                                <p class="text-truncate font-weight-light">{{ props.items.tmBasAbnormalTypeId   }}</p>
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="text">
@@ -37,7 +45,7 @@
                                 <p class="font-weight-medium text">异常类型属性:</p>
                             </v-col>
                             <v-col cols="8">
-                                <p class="text-truncate font-weight-light">{{ props.items.wbSt  }}</p>
+                                <p class="text-truncate font-weight-light">{{ props.items.abnormalType  }}</p>
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="text">
@@ -45,7 +53,7 @@
                                 <p class="font-weight-medium text">紧急程度:</p>
                             </v-col>
                             <v-col cols="8">
-                                <p class="text-truncate font-weight-light">{{ props.items.faultStationCn   }}</p>
+                                <p class="text-truncate font-weight-light">{{ props.items.urgentDegree   }}</p>
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="text">
@@ -53,7 +61,7 @@
                                 <p class="font-weight-medium text">异常内容:</p>
                             </v-col>
                             <v-col cols="8">
-                                <p class="text-truncate font-weight-light">{{ props.items.manitainContent   }}</p>
+                                <p class="text-truncate font-weight-light">{{ props.items.tmBasAbnormalContentId   }}</p>
                             </v-col>
                         </v-row>
                         <v-row no-gutters class="text">
@@ -61,21 +69,21 @@
                                 <p class="font-weight-medium text">发起时间:</p>
                             </v-col>
                             <v-col cols="8">
-                                <p class="text-truncate font-weight-light">{{ props.items.implementContent }}</p>
+                                <p class="text-truncate font-weight-light">{{ props.items.initiateTime }}</p>
                             </v-col>
                         </v-row>
 
                         <v-row no-gutters class="text">
-                            <v-col cols="3" class="text-right">
+                            <v-col v-if="props.items.abnormalState=='40'" cols="3" class="text-right">
                                 <v-btn @click="closeClick(props)" color="error mt-1" density="compact" :rounded="0" variant="plain">异常关闭</v-btn>
                             </v-col>
-                            <v-col cols="3" class="text-right">
+                            <v-col v-if="props.items.abnormalState=='20'" cols="3" class="text-right">
                                 <v-btn @click="disposeClick(props)" color="error mt-1" density="compact" :rounded="0" variant="plain">异常处理</v-btn>
                             </v-col>
-                            <v-col cols="3" class="text-right">
+                            <v-col v-if="props.items.abnormalState=='20'" cols="3" class="text-right">
                                 <v-btn @click="appointClick(props)" color="error mt-1" density="compact" :rounded="0" variant="plain">异常指派</v-btn>
                             </v-col>
-                            <v-col cols="3" class="text-right">
+                            <v-col v-if="props.items.abnormalState=='10'" cols="3" class="text-right">
                                 <v-btn @click="transpondClick(props)" color="error mt-1" density="compact" :rounded="0" variant="plain">异常转发</v-btn>
                             </v-col>
                             <v-col cols="3" class="text-right">
@@ -87,7 +95,12 @@
             </TableComponents>
         </div>
 
-        <SearchPage ref="searchPage" />
+
+
+        <SearchPage 
+            ref="searchPage" 
+            @searchHandle="searchHandle"
+        />
 
 
     </span>
@@ -110,7 +123,11 @@
     data: () => ({
 
     }),
+    created(){
+        // 判断 状态
 
+
+    },
     methods: {
         // 详情
         async detailClick(props){
@@ -119,17 +136,68 @@
             
             this.$router.push({
                 path:'/anomalyInitiate/detail', 
-                query:{ }
+                query:{ ttQmAbnormalId: items.ttQmAbnormalId }
             }) 
 
         }, 
+        // 处理 状态
+        formatStatus(items){
+
+
+            let _text=""
+
+            switch (items.abnormalState) {
+                case '10':  
+                    _text="待转发"
+                    break;
+                case '20':  
+                    _text="待指派"
+                    break;   
+                case '30':  
+                    _text="待处理"
+                    break;    
+                case '40':  
+                    _text="待关闭"
+                    break;   
+                case '90':  
+                    _text="已关闭"
+                    break; 
+                case '60':  
+                    _text="已驳回"
+                    break;      
+                default:
+                    break;
+            }
+
+            return _text
+     
+
+
+        },
         // 查询
         searchClick(){
             // console.log( this.$refs.searchPage )
             this.$refs.searchPage.showDrawer()
         },
+        // 查询结果
+        searchHandle(option){
+            // console.log(option)
+            this.$refs.table1.initFunc(1,{
+                ...option
+            })
+
+        },
+        // 发起异常
+        sponsorHandle(){
+            
+            this.$router.push({
+                path:'/anomalyInitiate/sponsor', 
+                query:{ }
+            })    
+        },
         // 异常转发
         transpondClick(){
+            // 待转发
             this.$router.push({
                 path:'/anomalyInitiate/transpond', 
                 query:{ }

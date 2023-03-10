@@ -30,10 +30,14 @@
                 <span>页</span>
             </span>
 
-            <span v-if="showSearchBtn" style="position:relative;top:1px;margin-left:16px;">
+            <span v-if="showSearchBtn" style="position:relative;top:1px;margin-left:0px;">
                 <v-btn @click="searchClick" variant="plain" color="primary">
                     <v-icon size="24" icon="mdi-magnify"></v-icon>
                     查询
+                </v-btn>
+                <v-btn @click="refreshClick" variant="plain" color="primary" style="padding: 0;">
+                    <!-- <v-icon size="24" icon="mdi-magnify"></v-icon> -->
+                    刷新
                 </v-btn>
             </span>
         </v-card>
@@ -117,7 +121,7 @@ import { showSuccessToast, showFailToast } from 'vant';
             })
         },
         // 初始化
-        async initFunc(_current=1){
+        async initFunc(_current=1,option){
             const {url,params={},children}=this
 
             if(children){
@@ -132,6 +136,7 @@ import { showSuccessToast, showFailToast } from 'vant';
                     pageNum: _current,
                     pageSize: 10,
                     ...params,
+                    ...option
                 }
             })
 
@@ -141,6 +146,10 @@ import { showSuccessToast, showFailToast } from 'vant';
                 this.items=rows
             } 
 
+        },
+        // 刷新
+        refreshClick(){
+            this.initFunc(1)
         },
         searchClick(){
             this.$emit("searchClick")

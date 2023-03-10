@@ -34,12 +34,21 @@ export const httpHandle = async(option={})=>{
             instance({
                 method: option["method"],
                 url:option["url"]+_paramsRESTful+_parmasURL,
-                data:JSON.stringify( (option["payload"]||{}) ), 
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Access-Control-Allow-Origin': '*',
-                    'Authorization': 'Bearer '+access_token
-                },
+                data: option.formData ? option["payload"]: JSON.stringify( (option["payload"]||{}) ), 
+                headers: option.formData ?
+                    {
+                        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8', // 表单提交
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer '+access_token
+                    }
+                    :
+                    {
+                        'Content-Type': 'application/json',
+                        'Access-Control-Allow-Origin': '*',
+                        'Authorization': 'Bearer '+access_token
+                    },
+
+
             })
             .then((res)=>{
                 // console.log(res)

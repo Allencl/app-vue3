@@ -12,7 +12,7 @@
                     <span class="font-weight-medium">异常发起信息流水</span>
                 </v-col>
                 <v-col cols="6">
-                    <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ "YC202302140001" }}</p>
+                    <p class="font-weight-medium text-right text-teal-lighten-1" color="primary">{{ bufferRow.abnormalNo }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -20,7 +20,7 @@
                     <p class="font-weight-medium text">异常类型属性:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.faultTypeCn }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.abnormalType }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -28,7 +28,7 @@
                     <p class="font-weight-medium text">紧急程度:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.faultStationCn }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.urgentDegree }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -36,7 +36,7 @@
                     <p class="font-weight-medium text">异常类型:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.problemDesc }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.tmBasAbnormalTypeId }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -44,7 +44,7 @@
                     <p class="font-weight-medium text">异常内容:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.reportType }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.tmBasAbnormalContentId }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -52,7 +52,7 @@
                     <p class="font-weight-medium text">异常描述:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.reportBy }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.abnormalStateName }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -60,7 +60,7 @@
                     <p class="font-weight-medium text">产品序列号:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.reportTime }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.ttPpOrderSnId }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -68,7 +68,7 @@
                     <p class="font-weight-medium text">产品名称:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.responseBy }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.partName }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -76,7 +76,7 @@
                     <p class="font-weight-medium text">异常地点:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.responseTime }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.abnormalPlace }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -84,7 +84,7 @@
                     <p class="font-weight-medium text">设备型号:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.maintainRepairBy }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.tmBasEquipmentId }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -92,7 +92,7 @@
                     <p class="font-weight-medium text">发起人:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.productRepairTime }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.initiateBy }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -100,7 +100,7 @@
                     <p class="font-weight-medium text">发起时间:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.productRepairTime }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.initiateTime }}</p>
                 </v-col>
             </v-row>
             <v-row no-gutters class="text">
@@ -108,7 +108,7 @@
                     <p class="font-weight-medium text">发起联系方式:</p>
                 </v-col>
                 <v-col cols="8">
-                    <p class="text-truncate font-weight-light">{{ bufferRow.productRepairTime }}</p>
+                    <p class="text-truncate font-weight-light">{{ bufferRow.initiatePhone }}</p>
                 </v-col>
             </v-row>
         </v-sheet>
@@ -250,6 +250,8 @@
 </template>
 <script>
     import AppBarPage from '@/components/AppBar.vue' // 异常处理 详情
+    import {httpHandle} from '@/http/http'  // api
+
     import { showSuccessToast,showFailToast } from 'vant'
 
     import moment from "moment"
@@ -270,10 +272,21 @@
     },
     methods: {
         // 初始化
-        initFunc(){
-            // const {row}=this.$route.query
-            
-            // this.bufferRow=JSON.parse(row)
+        async initFunc(){
+            const {ttQmAbnormalId}=this.$route.query
+
+            // 
+
+            const {code,data={}}= await httpHandle({
+                url:'/stage-api/iiot/abnormal',
+                method:"get",
+                url_RESTful:`/${ttQmAbnormalId}`   
+            })
+
+            if(code==200){
+                this.bufferRow=data
+            }
+
 
         },
 

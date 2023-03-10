@@ -29,6 +29,8 @@
         </div>
         <van-uploader :after-read="afterRead" />
 
+
+
     </span>
 </template>
 <script>

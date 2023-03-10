@@ -70,3 +70,28 @@
 }
 
 
+
+.custem-iamge-upload{
+    li{
+        list-style: none;
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        position: relative;
+        margin-right: 16px;
+        margin-bottom: 16px;
+
+        img{
+            width: 100%;
+            height: 100%;
+        }
+
+        .icon{
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            z-index: 111;
+        }
+    }
+}
+
